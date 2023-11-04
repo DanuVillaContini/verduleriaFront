@@ -5,7 +5,8 @@ import { Modal } from "react-bootstrap";
 function CrudEmpleados() {
     const [listApi, setlistApi] = useState([])
     const [showUpdateModal, setShowUpdateModal] = useState(false)
-
+    const [showDeleteModal, setShowDeleteModal] = useState(false)
+    const [showSuccessModal, setShowSuccessModal] = useState(false)
 
     const [idItem, setidItem] = useState([])
     const [nameItem, setnameItem] = useState([])
@@ -22,6 +23,7 @@ function CrudEmpleados() {
     const [updateCorreo, setupdateCorreo] = useState([])
     const [updateDni, setupdateDni] = useState([])
 
+    const [deleteId, setDeleteId] = useState("");
 
     const getListApi = async () => {
         try {
@@ -40,35 +42,18 @@ function CrudEmpleados() {
     }
     const nuevoItem = async () => {
         try {
-            let myHeaders = new Headers();
-            myHeaders.append("Content-Type", "application/json");
-
-            let raw = JSON.stringify({
-                name: nameItem,
-                apellido: apellidoItem,
-                telefono: telefonoItem,
-                correo: correoItem,
-                dni: dniItem,
-                pass: passItem
-            });
-
-            let requestOptions = {
-                method: 'POST',
-                headers: myHeaders,
-                body: raw,
+            console.log("ID a eliminar:", idItem);
+            var requestOptions = {
+                method: 'DELETE',
                 redirect: 'follow'
             };
 
-            const response = await fetch("https://estetica-backend-5ltx.onrender.com/usuario/register", requestOptions)
-            if (!response.ok) throw new Error("no se pudo crear nuevo elemento")
-            setnameItem("")
-            setapellidoItem("")
-            settelefonoItem("")
-            setcorreoItem("")
-            setdniItem("")
-            setpassItem("")
-
-            getListApi();
+            const response = await fetch("https://estetica-backend-5ltx.onrender.com/usuario/" + idItem, requestOptions)
+            if (!response.ok) throw new Error("no se pudo eliminar el personal")
+            setDeleteId("");
+            setShowSuccessModal(true);
+            setShowDeleteModal(false);
+            await getListApi()
         } catch (error) {
             console.error(error);
         }
@@ -93,8 +78,25 @@ function CrudEmpleados() {
                 redirect: 'follow'
             };
 
-            const response = await fetch("https://estetica-backend-5ltx.onrender.com/usuario/actualizar/6535ab8095c90bd682eb9f0a", requestOptions)
+            const response = await fetch("https://estetica-backend-5ltx.onrender.com/usuario/actualizar/" + updateId, requestOptions)
             if (!response.ok) throw new Error("no se pudo actualizar el elemento")
+            await getListApi()
+        } catch (error) {
+            console.error(error);
+        }
+    }
+    const deleteItem = async (idItem) => {
+        try {
+            var requestOptions = {
+                method: 'DELETE',
+                redirect: 'follow'
+            };
+
+            const response = await fetch("https://estetica-backend-5ltx.onrender.com/usuario/eliminar/" + idItem, requestOptions)
+            if (!response.ok) throw new Error("no se pudo eliminar el personal")
+            setDeleteId("");
+            setShowSuccessModal(true);
+            setShowDeleteModal(false);
             await getListApi()
         } catch (error) {
             console.error(error);
@@ -107,6 +109,15 @@ function CrudEmpleados() {
     const handleUpdate = async (_id) => {
         await updateItem(_id)
     }
+    const handleDeletePersonal = async (_id) => {
+        setDeleteId(_id);
+        setShowDeleteModal(true);
+    }
+    
+    const handleConfirmDelete = async () => {
+        await deleteItem();
+    }
+    
     useEffect(() => {
         getListApi()
     }, [])
@@ -189,7 +200,13 @@ function CrudEmpleados() {
                                 <td data-titulo="correo">{item.correo}</td>
                                 <td data-titulo="N° DNI">{item.dni}</td>
                                 <td data-titulo="Opciones">
-                                    <button><i className="bi bi-pencil-square">Eliminar</i></button>
+                                    <button onClick={() => {
+                                        handleDeletePersonal(item.idItem); 
+                                    }}>
+
+                                        <i className="bi bi-trash"></i> Eliminar
+                                    </button>
+
                                     <button
                                         onClick={() => {
                                             setShowUpdateModal(true);
@@ -268,8 +285,41 @@ function CrudEmpleados() {
                                 !updateDni
                             }>Agregar</button>
                     </form>
-                    
                 </Modal.Body>
+            </Modal>
+            <Modal show={showDeleteModal} onHide={() => setShowDeleteModal(false)}>
+                <Modal.Header closeButton>
+                    <Modal.Title className="font-monospace ">
+                        Confirmar eliminación
+                    </Modal.Title>
+                </Modal.Header>
+                <Modal.Body className="font-monospace ">
+                    ¿Estás seguro de que deseas eliminar este elemento?
+                </Modal.Body>
+                <Modal.Footer>
+                    <button onClick={() => setShowDeleteModal(false)}>Cancelar</button>
+                    <button
+                        onClick={handleConfirmDelete}>Si</button>
+                </Modal.Footer>
+            </Modal>
+
+            <Modal
+                show={showSuccessModal}
+                onHide={() => setShowSuccessModal(false)}
+            >
+                <Modal.Header closeButton>
+                    <Modal.Title className="font-monospace ">
+                        Operación exitosa
+                    </Modal.Title>
+                </Modal.Header>
+                <Modal.Body className="font-monospace ">
+                    La operación se ha realizado exitosamente.
+                </Modal.Body>
+                <Modal.Footer>
+                    <button
+                        onClick={() => setShowSuccessModal(false)}
+                    >Ok</button>
+                </Modal.Footer>
             </Modal>
         </>
     )
