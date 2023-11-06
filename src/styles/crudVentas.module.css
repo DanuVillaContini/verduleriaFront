@@ -1,0 +1,10 @@
+.nuevoItem__pedidos-form{
+    height: 0px;
+    overflow: hidden;
+    transition: all ease .3s;
+}
+.nuevoItem__acree-form{
+    height: 0px;
+    overflow: hidden;
+    transition: all ease .3s;
+}
