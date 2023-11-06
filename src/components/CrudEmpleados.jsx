@@ -8,7 +8,6 @@ function CrudEmpleados() {
     const [showDeleteModal, setShowDeleteModal] = useState(false)
     const [showSuccessModal, setShowSuccessModal] = useState(false)
 
-    const [idItem, setidItem] = useState([])
     const [nameItem, setnameItem] = useState([])
     const [apellidoItem, setapellidoItem] = useState([])
     const [telefonoItem, settelefonoItem] = useState([])
@@ -42,17 +41,34 @@ function CrudEmpleados() {
     }
     const nuevoItem = async () => {
         try {
-            console.log("ID a eliminar:", idItem);
+            var myHeaders = new Headers();
+            myHeaders.append("Content-Type", "application/json");
+
+            var raw = JSON.stringify({
+                name: nameItem,
+                apellido: apellidoItem,
+                telefono: telefonoItem,
+                correo: correoItem,
+                dni: dniItem,
+                // pass: passItem
+            });
+
             var requestOptions = {
-                method: 'DELETE',
+                method: 'POST',
+                headers: myHeaders,
+                body: raw,
                 redirect: 'follow'
             };
 
-            const response = await fetch("https://estetica-backend-5ltx.onrender.com/usuario/" + idItem, requestOptions)
-            if (!response.ok) throw new Error("no se pudo eliminar el personal")
-            setDeleteId("");
-            setShowSuccessModal(true);
-            setShowDeleteModal(false);
+            const response = await fetch("https://estetica-backend-5ltx.onrender.com/usuario/register", requestOptions)
+            if (!response.ok) throw new Error("no se pudo crear el elemento")
+
+            setnameItem("")
+            setapellidoItem("")
+            settelefonoItem("")
+            setcorreoItem("")
+            setdniItem("")
+
             await getListApi()
         } catch (error) {
             console.error(error);
@@ -80,19 +96,22 @@ function CrudEmpleados() {
 
             const response = await fetch("https://estetica-backend-5ltx.onrender.com/usuario/actualizar/" + updateId, requestOptions)
             if (!response.ok) throw new Error("no se pudo actualizar el elemento")
+            setShowSuccessModal(true);
+            setShowUpdateModal(false)
             await getListApi()
         } catch (error) {
             console.error(error);
         }
     }
-    const deleteItem = async (idItem) => {
+    const deleteItem = async (_id) => {
         try {
+            
             var requestOptions = {
                 method: 'DELETE',
                 redirect: 'follow'
             };
 
-            const response = await fetch("https://estetica-backend-5ltx.onrender.com/usuario/eliminar/" + idItem, requestOptions)
+            const response = await fetch("https://estetica-backend-5ltx.onrender.com/usuario/eliminar/" + _id, requestOptions)
             if (!response.ok) throw new Error("no se pudo eliminar el personal")
             setDeleteId("");
             setShowSuccessModal(true);
@@ -113,11 +132,11 @@ function CrudEmpleados() {
         setDeleteId(_id);
         setShowDeleteModal(true);
     }
-    
+
     const handleConfirmDelete = async () => {
-        await deleteItem();
+        await deleteItem(deleteId);
     }
-    
+
     useEffect(() => {
         getListApi()
     }, [])
@@ -130,10 +149,14 @@ function CrudEmpleados() {
                 </h1>
                 <div className="">
                     <label>Nombre</label>
-                    <input type="text" placeholder="Your name" value={nameItem} onChange={(e) => {
-                        const onlyLettersAndSpaces = e.target.value.replace(/[^A-Za-zñÑ\s]/g, "");
-                        setnameItem(onlyLettersAndSpaces);
-                    }} />
+                    <input
+                        type="text"
+                        placeholder="Your name"
+                        value={nameItem}
+                        onChange={(e) => {
+                            const onlyLettersAndSpaces = e.target.value.replace(/[^A-Za-zñÑ\s]/g, "");
+                            setnameItem(onlyLettersAndSpaces);
+                        }} />
                 </div>
                 <div className="">
                     <label>Apellido</label>
@@ -201,9 +224,8 @@ function CrudEmpleados() {
                                 <td data-titulo="N° DNI">{item.dni}</td>
                                 <td data-titulo="Opciones">
                                     <button onClick={() => {
-                                        handleDeletePersonal(item.idItem); 
+                                        handleDeletePersonal(item._id);
                                     }}>
-
                                         <i className="bi bi-trash"></i> Eliminar
                                     </button>
 
@@ -226,7 +248,6 @@ function CrudEmpleados() {
                 </tbody>
             </table>
 
-
             <Modal
                 show={showUpdateModal}
                 onHide={() => setShowUpdateModal(false)}
@@ -243,10 +264,14 @@ function CrudEmpleados() {
                         </h1>
                         <div className="">
                             <label>Nombre</label>
-                            <input type="text" placeholder="Your name" value={updateName} onChange={(e) => {
-                                const onlyLettersAndSpaces = e.target.value.replace(/[^A-Za-zñÑ\s]/g, "");
-                                setupdateName(onlyLettersAndSpaces);
-                            }} />
+                            <input
+                                type="text"
+                                placeholder="Your name"
+                                maxLength={25}
+                                value={updateName} onChange={(e) => {
+                                    const onlyLettersAndSpaces = e.target.value.replace(/[^A-Za-zñÑ\s]/g, "");
+                                    setupdateName(onlyLettersAndSpaces);
+                                }} />
                         </div>
                         <div className="">
                             <label>Apellido</label>
@@ -276,6 +301,7 @@ function CrudEmpleados() {
                                 setupdateDni(onlyNumbers);
                             }} />
                         </div>
+                        <button onClick={() =>{ setShowUpdateModal(false)}}>Cancelar</button>
                         <button className="bg-danger" onClick={handleUpdate}
                             disabled={
                                 !updateName ||
@@ -283,10 +309,11 @@ function CrudEmpleados() {
                                 !updateTelefono ||
                                 !updateCorreo ||
                                 !updateDni
-                            }>Agregar</button>
+                            }>Actualizar</button>
                     </form>
                 </Modal.Body>
             </Modal>
+
             <Modal show={showDeleteModal} onHide={() => setShowDeleteModal(false)}>
                 <Modal.Header closeButton>
                     <Modal.Title className="font-monospace ">
