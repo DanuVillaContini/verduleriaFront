@@ -49,8 +49,7 @@ function CrudEmpleados() {
                 apellido: apellidoItem,
                 telefono: telefonoItem,
                 correo: correoItem,
-                dni: dniItem,
-                // pass: passItem
+                dni: dniItem
             });
 
             var requestOptions = {
@@ -76,10 +75,10 @@ function CrudEmpleados() {
     }
     const updateItem = async () => {
         try {
-            var myHeaders = new Headers();
+            let myHeaders = new Headers();
             myHeaders.append("Content-Type", "application/json");
 
-            var raw = JSON.stringify({
+            let raw = JSON.stringify({
                 name: updateName,
                 apellido: updateApellido,
                 telefono: updateTelefono,
@@ -87,7 +86,7 @@ function CrudEmpleados() {
                 dni: updateDni
             });
 
-            var requestOptions = {
+            let requestOptions = {
                 method: 'PUT',
                 headers: myHeaders,
                 body: raw,
@@ -105,7 +104,7 @@ function CrudEmpleados() {
     }
     const deleteItem = async (_id) => {
         try {
-            
+
             var requestOptions = {
                 method: 'DELETE',
                 redirect: 'follow'
@@ -202,51 +201,6 @@ function CrudEmpleados() {
                     }>Agregar</button>
             </form>
 
-            <table className="bg-warning">
-                <thead>
-                    <tr>
-                        <th className="">Nombre</th>
-                        <th className="">Apellido</th>
-                        <th className="">Telefono</th>
-                        <th className="">Correo</th>
-                        <th className="">N° DNI</th>
-                        <th className="">Opciones</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {
-                        listApi.map((item) => (
-                            <tr key={item._id}>
-                                <td data-titulo="Nombre">{item.name}</td>
-                                <td data-titulo="Apellido">{item.apellido}</td>
-                                <td data-titulo="Telefono">{item.telefono}</td>
-                                <td data-titulo="correo">{item.correo}</td>
-                                <td data-titulo="N° DNI">{item.dni}</td>
-                                <td data-titulo="Opciones">
-                                    <button onClick={() => {
-                                        handleDeletePersonal(item._id);
-                                    }}>
-                                        <i className="bi bi-trash"></i> Eliminar
-                                    </button>
-
-                                    <button
-                                        onClick={() => {
-                                            setShowUpdateModal(true);
-                                            setupdateId(item._id)
-                                            setupdateName(item.name)
-                                            setupdateApellido(item.apellido)
-                                            setupdateTelefono(item.telefono)
-                                            setupdateCorreo(item.correo)
-                                            setupdateDni(item.dni)
-                                        }}
-                                    ><i className="bi bi-pencil-square">Update</i></button>
-
-                                </td>
-                            </tr>
-                        ))
-                    }
-                </tbody>
-            </table>
 
             <Modal
                 show={showUpdateModal}
@@ -301,7 +255,7 @@ function CrudEmpleados() {
                                 setupdateDni(onlyNumbers);
                             }} />
                         </div>
-                        <button onClick={() =>{ setShowUpdateModal(false)}}>Cancelar</button>
+                        <button onClick={() => { setShowUpdateModal(false) }}>Cancelar</button>
                         <button className="bg-danger" onClick={handleUpdate}
                             disabled={
                                 !updateName ||
@@ -313,6 +267,52 @@ function CrudEmpleados() {
                     </form>
                 </Modal.Body>
             </Modal>
+
+            <table className="bg-warning">
+                <thead>
+                    <tr>
+                        <th className="">Nombre</th>
+                        <th className="">Apellido</th>
+                        <th className="">Telefono</th>
+                        <th className="">Correo</th>
+                        <th className="">N° DNI</th>
+                        <th className="">Opciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {
+                        listApi.map((item) => (
+                            <tr key={item._id}>
+                                <td data-titulo="Nombre">{item.name}</td>
+                                <td data-titulo="Apellido">{item.apellido}</td>
+                                <td data-titulo="Telefono">{item.telefono}</td>
+                                <td data-titulo="correo">{item.correo}</td>
+                                <td data-titulo="N° DNI">{item.dni}</td>
+                                <td data-titulo="Opciones">
+                                    <button onClick={() => {
+                                        handleDeletePersonal(item._id);
+                                    }}>
+                                        <i className="bi bi-trash"></i> Eliminar
+                                    </button>
+
+                                    <button
+                                        onClick={() => {
+                                            setShowUpdateModal(true);
+                                            setupdateId(item._id)
+                                            setupdateName(item.name)
+                                            setupdateApellido(item.apellido)
+                                            setupdateTelefono(item.telefono)
+                                            setupdateCorreo(item.correo)
+                                            setupdateDni(item.dni)
+                                        }}
+                                    ><i className="bi bi-pencil-square">Update</i></button>
+
+                                </td>
+                            </tr>
+                        ))
+                    }
+                </tbody>
+            </table>
 
             <Modal show={showDeleteModal} onHide={() => setShowDeleteModal(false)}>
                 <Modal.Header closeButton>
