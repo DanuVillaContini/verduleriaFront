@@ -1,0 +1,5 @@
+.nuevoItem__empleados-form{
+    height: 0px;
+    overflow: hidden;
+    transition: all ease .3s;
+}

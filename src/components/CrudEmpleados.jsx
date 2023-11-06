@@ -1,9 +1,12 @@
 import { useEffect } from "react";
 import { useState } from "react"
-import { Modal } from "react-bootstrap";
+import { Button, Col, Container, Modal, Row } from "react-bootstrap";
+import Styles from "../styles/crudEmpleados.module.css"
+
 
 function CrudEmpleados() {
     const [listApi, setlistApi] = useState([])
+    const [showNuevoPedidoForm, setshowNuevoPedidoForm] = useState(false)
     const [showUpdateModal, setShowUpdateModal] = useState(false)
     const [showDeleteModal, setShowDeleteModal] = useState(false)
     const [showSuccessModal, setShowSuccessModal] = useState(false)
@@ -142,212 +145,229 @@ function CrudEmpleados() {
 
     return (
         <>
-            <form className="bg-success">
-                <h1>
-                    Agregar Nuevo
-                </h1>
-                <div className="">
-                    <label>Nombre</label>
-                    <input
-                        type="text"
-                        placeholder="Your name"
-                        value={nameItem}
-                        onChange={(e) => {
-                            const onlyLettersAndSpaces = e.target.value.replace(/[^A-Za-zñÑ\s]/g, "");
-                            setnameItem(onlyLettersAndSpaces);
-                        }} />
-                </div>
-                <div className="">
-                    <label>Apellido</label>
-                    <input type="text" placeholder="Your Apellido" value={apellidoItem} onChange={(e) => {
-                        const onlyLettersAndSpaces = e.target.value.replace(/[^A-Za-zñÑ\s]/g, "");
-                        setapellidoItem(onlyLettersAndSpaces);
-
-                    }} />
-                </div>
-                <div className="">
-                    <label>Phonenumber</label>
-                    <input type="tel" placeholder="Your phonenumber" value={telefonoItem} onChange={(e) => {
-                        const input = e.target.value;
-                        const onlyNumbers = input.replace(/[^0-9]/g, "");
-                        settelefonoItem(onlyNumbers);
-                    }} />
-                </div>
-                <div className="">
-                    <label>Correo</label>
-                    <input type="email" placeholder="correo@example.com" value={correoItem} onChange={(e) => setcorreoItem(e.target.value)} />
-                </div>
-                <div className="">
-                    <label>Dni</label>
-                    <input type="tel" placeholder="Your DNI" value={dniItem} onChange={(e) => {
-                        const input = e.target.value
-                        const onlyNumbers = input.replace(/[^0-9]/g, "");
-                        setdniItem(onlyNumbers);
-                    }} />
-                </div>
-                <div className="">
-                    <label>Password</label>
-                    <input type="password" placeholder="Your password" value={passItem} onChange={(e) => setpassItem(e.target.value)} maxLength={20}
-                        minLength={9} />
-                </div>
-                <button className="bg-danger" onClick={handleSubmit}
-                    disabled={
-                        !nameItem ||
-                        !apellidoItem ||
-                        !telefonoItem ||
-                        !correoItem ||
-                        !dniItem ||
-                        !passItem
-                    }>Agregar</button>
-            </form>
-
-
-            <Modal
-                show={showUpdateModal}
-                onHide={() => setShowUpdateModal(false)}
-            >
-                <Modal.Header closeButton>
-                    <Modal.Title className="font-monospace ">
-                        Actualizar Datos
-                    </Modal.Title>
-                </Modal.Header>
-                <Modal.Body>
-                    <form className="bg-success">
-                        <h1>
-                            Actualizar
-                        </h1>
-                        <div className="">
-                            <label>Nombre</label>
-                            <input
-                                type="text"
-                                placeholder="Your name"
-                                maxLength={25}
-                                value={updateName} onChange={(e) => {
+            <Container >
+                <Row className="d-flex flex-row flex-column m-1">
+                    <Col>
+                        <h1>Empleados</h1>
+                        <Button
+                            variant="info"
+                            onClick={() => {
+                                setshowNuevoPedidoForm((prevState) => !prevState);
+                            }}
+                        >Nuevo</Button>
+                        <form className={`bg-secondary ${Styles["nuevoItem__empleados-form"]}`} style={{ height: showNuevoPedidoForm ? "auto" : undefined }}>
+                            <h1>
+                                Agregar Nuevo
+                            </h1>
+                            <div className="">
+                                <label>Nombre</label>
+                                <input
+                                    type="text"
+                                    placeholder="Your name"
+                                    value={nameItem}
+                                    onChange={(e) => {
+                                        const onlyLettersAndSpaces = e.target.value.replace(/[^A-Za-zñÑ\s]/g, "");
+                                        setnameItem(onlyLettersAndSpaces);
+                                    }} />
+                            </div>
+                            <div className="">
+                                <label>Apellido</label>
+                                <input type="text" placeholder="Your Apellido" value={apellidoItem} onChange={(e) => {
                                     const onlyLettersAndSpaces = e.target.value.replace(/[^A-Za-zñÑ\s]/g, "");
-                                    setupdateName(onlyLettersAndSpaces);
+                                    setapellidoItem(onlyLettersAndSpaces);
+
                                 }} />
-                        </div>
-                        <div className="">
-                            <label>Apellido</label>
-                            <input type="text" placeholder="Your Apellido" value={updateApellido} onChange={(e) => {
-                                const onlyLettersAndSpaces = e.target.value.replace(/[^A-Za-zñÑ\s]/g, "");
-                                setupdateApellido(onlyLettersAndSpaces);
+                            </div>
+                            <div className="">
+                                <label>Phonenumber</label>
+                                <input type="tel" placeholder="Your phonenumber" value={telefonoItem} onChange={(e) => {
+                                    const input = e.target.value;
+                                    const onlyNumbers = input.replace(/[^0-9]/g, "");
+                                    settelefonoItem(onlyNumbers);
+                                }} />
+                            </div>
+                            <div className="">
+                                <label>Correo</label>
+                                <input type="email" placeholder="correo@example.com" value={correoItem} onChange={(e) => setcorreoItem(e.target.value)} />
+                            </div>
+                            <div className="">
+                                <label>Dni</label>
+                                <input type="tel" placeholder="Your DNI" value={dniItem} onChange={(e) => {
+                                    const input = e.target.value
+                                    const onlyNumbers = input.replace(/[^0-9]/g, "");
+                                    setdniItem(onlyNumbers);
+                                }} />
+                            </div>
+                            <div className="">
+                                <label>Password</label>
+                                <input type="password" placeholder="Your password" value={passItem} onChange={(e) => setpassItem(e.target.value)} maxLength={20}
+                                    minLength={9} />
+                            </div>
+                            <button className="bg-danger" onClick={handleSubmit}
+                                disabled={
+                                    !nameItem ||
+                                    !apellidoItem ||
+                                    !telefonoItem ||
+                                    !correoItem ||
+                                    !dniItem ||
+                                    !passItem
+                                }>Agregar</button>
+                        </form>
+                    </Col>
+                </Row>
 
-                            }} />
-                        </div>
-                        <div className="">
-                            <label>Phonenumber</label>
-                            <input type="tel" placeholder="Your phonenumber" value={updateTelefono} onChange={(e) => {
-                                const input = e.target.value;
-                                const onlyNumbers = input.replace(/[^0-9]/g, "");
-                                setupdateTelefono(onlyNumbers);
-                            }} />
-                        </div>
-                        <div className="">
-                            <label>Correo</label>
-                            <input type="email" placeholder="correo@example.com" value={updateCorreo} onChange={(e) => setupdateCorreo(e.target.value)} />
-                        </div>
-                        <div className="">
-                            <label>Dni</label>
-                            <input type="tel" placeholder="Your DNI" value={updateDni} onChange={(e) => {
-                                const input = e.target.value
-                                const onlyNumbers = input.replace(/[^0-9]/g, "");
-                                setupdateDni(onlyNumbers);
-                            }} />
-                        </div>
-                        <button onClick={() => { setShowUpdateModal(false) }}>Cancelar</button>
-                        <button className="bg-danger" onClick={handleUpdate}
-                            disabled={
-                                !updateName ||
-                                !updateApellido ||
-                                !updateTelefono ||
-                                !updateCorreo ||
-                                !updateDni
-                            }>Actualizar</button>
-                    </form>
-                </Modal.Body>
-            </Modal>
+                <Modal
+                    show={showUpdateModal}
+                    onHide={() => setShowUpdateModal(false)}
+                >
+                    <Modal.Header closeButton>
+                        <Modal.Title className="font-monospace ">
+                            Actualizar Datos
+                        </Modal.Title>
+                    </Modal.Header>
+                    <Modal.Body>
+                        <form className="bg-success">
+                            <h1>
+                                Actualizar
+                            </h1>
+                            <div className="">
+                                <label>Nombre</label>
+                                <input
+                                    type="text"
+                                    placeholder="Your name"
+                                    maxLength={25}
+                                    value={updateName} onChange={(e) => {
+                                        const onlyLettersAndSpaces = e.target.value.replace(/[^A-Za-zñÑ\s]/g, "");
+                                        setupdateName(onlyLettersAndSpaces);
+                                    }} />
+                            </div>
+                            <div className="">
+                                <label>Apellido</label>
+                                <input type="text" placeholder="Your Apellido" value={updateApellido} onChange={(e) => {
+                                    const onlyLettersAndSpaces = e.target.value.replace(/[^A-Za-zñÑ\s]/g, "");
+                                    setupdateApellido(onlyLettersAndSpaces);
 
-            <table className="bg-warning">
-                <thead>
-                    <tr>
-                        <th className="">Nombre</th>
-                        <th className="">Apellido</th>
-                        <th className="">Telefono</th>
-                        <th className="">Correo</th>
-                        <th className="">N° DNI</th>
-                        <th className="">Opciones</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {
-                        listApi.map((item) => (
-                            <tr key={item._id}>
-                                <td data-titulo="Nombre">{item.name}</td>
-                                <td data-titulo="Apellido">{item.apellido}</td>
-                                <td data-titulo="Telefono">{item.telefono}</td>
-                                <td data-titulo="correo">{item.correo}</td>
-                                <td data-titulo="N° DNI">{item.dni}</td>
-                                <td data-titulo="Opciones">
-                                    <button onClick={() => {
-                                        handleDeletePersonal(item._id);
-                                    }}>
-                                        <i className="bi bi-trash"></i> Eliminar
-                                    </button>
+                                }} />
+                            </div>
+                            <div className="">
+                                <label>Phonenumber</label>
+                                <input type="tel" placeholder="Your phonenumber" value={updateTelefono} onChange={(e) => {
+                                    const input = e.target.value;
+                                    const onlyNumbers = input.replace(/[^0-9]/g, "");
+                                    setupdateTelefono(onlyNumbers);
+                                }} />
+                            </div>
+                            <div className="">
+                                <label>Correo</label>
+                                <input type="email" placeholder="correo@example.com" value={updateCorreo} onChange={(e) => setupdateCorreo(e.target.value)} />
+                            </div>
+                            <div className="">
+                                <label>Dni</label>
+                                <input type="tel" placeholder="Your DNI" value={updateDni} onChange={(e) => {
+                                    const input = e.target.value
+                                    const onlyNumbers = input.replace(/[^0-9]/g, "");
+                                    setupdateDni(onlyNumbers);
+                                }} />
+                            </div>
+                            <button onClick={() => { setShowUpdateModal(false) }}>Cancelar</button>
+                            <button className="bg-danger" onClick={handleUpdate}
+                                disabled={
+                                    !updateName ||
+                                    !updateApellido ||
+                                    !updateTelefono ||
+                                    !updateCorreo ||
+                                    !updateDni
+                                }>Actualizar</button>
+                        </form>
+                    </Modal.Body>
+                </Modal>
 
-                                    <button
-                                        onClick={() => {
-                                            setShowUpdateModal(true);
-                                            setupdateId(item._id)
-                                            setupdateName(item.name)
-                                            setupdateApellido(item.apellido)
-                                            setupdateTelefono(item.telefono)
-                                            setupdateCorreo(item.correo)
-                                            setupdateDni(item.dni)
-                                        }}
-                                    ><i className="bi bi-pencil-square">Update</i></button>
-
-                                </td>
+                <Row>
+                    <table className="bg-warning">
+                        <thead>
+                            <tr>
+                                <th className="">Nombre</th>
+                                <th className="">Apellido</th>
+                                <th className="">Telefono</th>
+                                <th className="">Correo</th>
+                                <th className="">N° DNI</th>
+                                <th className="">Opciones</th>
                             </tr>
-                        ))
-                    }
-                </tbody>
-            </table>
+                        </thead>
+                        <tbody>
+                            {
+                                listApi.map((item) => (
+                                    <tr key={item._id}>
+                                        <td data-titulo="Nombre">{item.name}</td>
+                                        <td data-titulo="Apellido">{item.apellido}</td>
+                                        <td data-titulo="Telefono">{item.telefono}</td>
+                                        <td data-titulo="correo">{item.correo}</td>
+                                        <td data-titulo="N° DNI">{item.dni}</td>
+                                        <td data-titulo="Opciones">
+                                            <button onClick={() => {
+                                                handleDeletePersonal(item._id);
+                                            }}>
+                                                <i className="bi bi-trash"></i> Eliminar
+                                            </button>
 
-            <Modal show={showDeleteModal} onHide={() => setShowDeleteModal(false)}>
-                <Modal.Header closeButton>
-                    <Modal.Title className="font-monospace ">
-                        Confirmar eliminación
-                    </Modal.Title>
-                </Modal.Header>
-                <Modal.Body className="font-monospace ">
-                    ¿Estás seguro de que deseas eliminar este elemento?
-                </Modal.Body>
-                <Modal.Footer>
-                    <button onClick={() => setShowDeleteModal(false)}>Cancelar</button>
-                    <button
-                        onClick={handleConfirmDelete}>Si</button>
-                </Modal.Footer>
-            </Modal>
+                                            <button
+                                                onClick={() => {
+                                                    setShowUpdateModal(true);
+                                                    setupdateId(item._id)
+                                                    setupdateName(item.name)
+                                                    setupdateApellido(item.apellido)
+                                                    setupdateTelefono(item.telefono)
+                                                    setupdateCorreo(item.correo)
+                                                    setupdateDni(item.dni)
+                                                }}
+                                            ><i className="bi bi-pencil-square">Update</i></button>
 
-            <Modal
-                show={showSuccessModal}
-                onHide={() => setShowSuccessModal(false)}
-            >
-                <Modal.Header closeButton>
-                    <Modal.Title className="font-monospace ">
-                        Operación exitosa
-                    </Modal.Title>
-                </Modal.Header>
-                <Modal.Body className="font-monospace ">
-                    La operación se ha realizado exitosamente.
-                </Modal.Body>
-                <Modal.Footer>
-                    <button
-                        onClick={() => setShowSuccessModal(false)}
-                    >Ok</button>
-                </Modal.Footer>
-            </Modal>
+                                        </td>
+                                    </tr>
+                                ))
+                            }
+                        </tbody>
+                    </table>
+                </Row>
+                
+                <Modal show={showDeleteModal} onHide={() => setShowDeleteModal(false)}>
+                    <Modal.Header closeButton>
+                        <Modal.Title className="font-monospace ">
+                            Confirmar eliminación
+                        </Modal.Title>
+                    </Modal.Header>
+                    <Modal.Body className="font-monospace ">
+                        ¿Estás seguro de que deseas eliminar este elemento?
+                    </Modal.Body>
+                    <Modal.Footer>
+                        <button onClick={() => setShowDeleteModal(false)}>Cancelar</button>
+                        <button
+                            onClick={handleConfirmDelete}>Si</button>
+                    </Modal.Footer>
+                </Modal>
+
+                <Modal
+                    show={showSuccessModal}
+                    onHide={() => setShowSuccessModal(false)}
+                >
+                    <Modal.Header closeButton>
+                        <Modal.Title className="font-monospace ">
+                            Operación exitosa
+                        </Modal.Title>
+                    </Modal.Header>
+                    <Modal.Body className="font-monospace ">
+                        La operación se ha realizado exitosamente.
+                    </Modal.Body>
+                    <Modal.Footer>
+                        <button
+                            onClick={() => setShowSuccessModal(false)}
+                        >Ok</button>
+                    </Modal.Footer>
+                </Modal>
+
+            </Container>
+
+
         </>
     )
 }
