@@ -1,10 +1,9 @@
 import { useState } from "react"
-import { Button, Col, Row } from "react-bootstrap";
+import { Accordion, Button, Col, Row } from "react-bootstrap";
 import Styles from "../styles/crudVentas.module.css"
 
 function PedidosCrud() {
     const [showNuevoPedidoForm, setshowNuevoPedidoForm] = useState(false)
-    // const [nuevoArticulo, setNuevoArticulo] = useState("");
 
     const mostrarItem = [
         { _id: 1, numPedido: 1, nameCliente: "Rogelio Bermudes", telefon: 381222333, total: 7.2, descrip: "manzana + pera + motadela" },
@@ -17,29 +16,24 @@ function PedidosCrud() {
         { _id: 8, numPedido: 8, nameCliente: "Ellen Sanchez", telefon: 381222333, total: 9.2, descrip: "manzana + pera + motadela" },
         { _id: 9, numPedido: 9, nameCliente: "Sasha Costa", telefon: 381222333, total: 8.7, descrip: "manzana + pera + motadela" }
     ]
-    // const agregarNuevoPedido = () => {
-    //     if (nuevoArticulo) {
-    //         const nuevoPedido = {
-    //             _id: mostrarItem.length + 1, // Ajusta el valor de _id según tus necesidades
-    //             numPedido: mostrarItem.length + 1, // Ajusta el valor de numPedido según tus necesidades
-    //             nameCliente: "Nombre del Cliente",
-    //             telefon: "Teléfono del Cliente",
-    //             total: "Precio Total",
-    //             descrip: nuevoArticulo, // Agrega el valor del select
-    //         };
+    const articulosPrueba = [
+        { _id: 1, nameArt: "Banana" },
+        { _id: 2, nameArt: "Manzana" },
+        { _id: 3, nameArt: "Apio" },
+        { _id: 4, nameArt: "Rucula" },
+        { _id: 5, nameArt: "Acelga" },
+        { _id: 6, nameArt: "Espinaca" },
+        { _id: 7, nameArt: "Pera" },
+        { _id: 8, nameArt: "Frutilla" },
+        { _id: 9, nameArt: "Tomate" },
+        { _id: 10, nameArt: "Zanahoria" },
+    ]
 
-    //         // Actualiza el estado de mostrarItem con el nuevo pedido
-    //         setMostrarItem((prevItems) => [...prevItems, nuevoPedido]);
-
-    //         // Restablece el valor del estado nuevoArticulo
-    //         setNuevoArticulo("");
-    //     }
-    // };
     return (
         <>
             <Row className="d-flex flex-row flex-column m-1">
                 <Col>
-                    <h2>Pedidos Deliveri</h2>
+                    <h2>Pedidos Delivery</h2>
 
                     <Button
                         variant="info"
@@ -68,20 +62,27 @@ function PedidosCrud() {
                             <input type="tel" placeholder="Telefono del cliente" />
                         </div>
 
-                        <div className="">
-                            <label>Articulos</label>
-                            <select>
-                                {/* <select value={nuevoArticulo}
-                                onChange={(e) => setNuevoArticulo(e.target.value)}></select> */}
-                                <option value="">Opciones</option>
-                                <option value="Bananas">Bananas</option>
-                                <option value="Zanahorias">Zanahorias</option>
-                                <option value="Espinacas">Espinacas</option>
-                                <option value="Manzanas">Manzanas</option>
-                                <option value="Peras">Peras</option>
-                                <option value="Zanahorias">Zanahorias</option>
-                                <option value="Espinacas">Espinacas</option>
-                            </select>
+                        <div className="col-10">
+                            <Accordion defaultActiveKey="0">
+                                <Accordion.Item eventKey="0">
+                                    <Accordion.Header>Articulos</Accordion.Header>
+                                    <Accordion.Body className="d-flex flex-column">
+                                        {articulosPrueba.map((articulo) => (
+                                            <div key={articulo._id} className="form-check form-check-inline">
+                                                <input
+                                                    className="form-check-input"
+                                                    type="checkbox"
+                                                    id={`articuloCheckbox${articulo._id}`}
+                                                    value={articulo.nameArt}
+                                                />
+                                                <label className="form-check-label" htmlFor={`articuloCheckbox${articulo._id}`}>
+                                                    {articulo.nameArt}
+                                                </label>
+                                            </div>
+                                        ))}
+                                    </Accordion.Body>
+                                </Accordion.Item>
+                            </Accordion>
                         </div>
                         <div className="">
                             <label>Precio Total</label>
@@ -91,8 +92,8 @@ function PedidosCrud() {
                         {/* <Button className="bg-dark" onClick={agregarNuevoPedido}>Crear</Button> */}
 
                     </form>
-
                 </Col>
+
                 <Col >
                     <table className="bg-warning">
                         <thead>
