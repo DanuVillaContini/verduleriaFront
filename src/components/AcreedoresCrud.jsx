@@ -19,38 +19,44 @@ function AcreedoresCrud() {
         { _id: 9, nameCliente: "Sasha Costa", total: 8.7, }
     ]
     return (
-        <>
+        <div className={Styles['div-de-acreedores']}>
             <Row className="d-flex flex-column m-1">
-                <Col>
-                    <h2>Acreedores Varios</h2>
-                    <Button
+                <Col className={Styles['col-de-acreedores']}>
+                    <h2 className={Styles['titulo-de-acreedores']} >Acreedores Varios</h2>
+                    <button className={Styles['button-de-pedidos']}
                         variant="info"
                         onClick={() => {
                             setshowNuevoAcreeForm((prevState) => !prevState);
 
                         }}
-                    >Nuevo</Button>
+                    ><i class="bi bi-person-fill-add"></i>Nuevo acreedor</button>
                     <form className={`bg-secondary ${Styles["nuevoItem__acree-form"]}`} style={{ height: showNuevoAcreeForm ? "auto" : undefined }}>
-                        <h4>
-                            Nuevo
-                        </h4>
-                        <div className="">
+                        <h4 className={Styles['titulo-de-acreedores']}>    Nuevo acreedor </h4>
+                        <div className={Styles['container-div-del-form']}>
                             <label>Nombre y apellido</label>
-                            <input type="text" placeholder="Nombre y apellido de quien hace el pedido" />
+                            <input className={Styles['input-form']} type="text" placeholder="Julio César" />
                         </div>
-                        <div className="">
+                        <div className={Styles['container-div-del-form']}>
+                            <label>Domicilio</label>
+                            <input className={Styles['input-form']} type="text" placeholder="Gotham city 1010" />
+                        </div>
+                        <div className={Styles['container-div-del-form']}>
+                            <label>Teléfono</label>
+                            <input className={Styles['input-form']} type="text" placeholder="+1 8 5555 5555" />
+                        </div>
+                        <div className={Styles['container-div-del-form']}>
                             <label>Total Deudor</label>
-                            <input type="text" placeholder="Indique precio total" />
+                            <input className={Styles['input-form']} type="text" placeholder="Indique precio total" />
                         </div>
 
-                        <Button className="bg-dark">Crear</Button>
+                        <button className={`bg-dark mt-5 ${Styles["button-de-pedidos"]}`}> <i class="bi bi-plus-circle"></i> Crear</button>
                     </form>
 
                 </Col>
-                <Col >
-                    <table className="bg-warning">
+                <Col className={Styles['col-de-acreedores-2']}>
+                    <table className={Styles['tabla-de-acreedores']}>
                         <thead>
-                            <tr>
+                            <tr className={Styles['bordes-blancos']}>
                                 <th className="text-center">Cliente</th>
                                 <th className="text-center">Total Deudor</th>
                                 <th className="text-center">Opciones</th>
@@ -62,7 +68,7 @@ function AcreedoresCrud() {
                                     <tr key={item._id}>
                                         <td className="text-center" data-titulo="Cliente">{item.nameCliente}</td>
                                         <td className="text-center" data-titulo="Total Deudor">{item.total}</td>
-                                        <td data-titulo="Opciones">
+                                        <td className="text-center" data-titulo="Opciones">
                                             <Button variant='outline-success' className="m-1">
                                                 <i className="bi bi-pencil-square">Cambiar Estado</i>
                                             </Button>
@@ -76,7 +82,7 @@ function AcreedoresCrud() {
                 </Col>
             </Row>
 
-        </>
+        </div>
     )
 }
 

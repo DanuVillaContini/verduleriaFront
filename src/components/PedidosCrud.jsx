@@ -29,40 +29,42 @@ function PedidosCrud() {
         { _id: 10, nameArt: "Zanahoria" },
     ]
 
+    // className={styles['name-class']}
+
     return (
-        <>
+        <div className={Styles['div-de-pedidos']}>
             <Row className="d-flex flex-row flex-column m-1">
-                <Col>
+                <Col className={Styles['col-de-acreedores']}>
                     <h2>Pedidos Delivery</h2>
 
-                    <Button
+                    <button className={Styles['button-de-pedidos']}
                         variant="info"
                         onClick={() => {
                             setshowNuevoPedidoForm((prevState) => !prevState);
-
-                        }}
-                    >Nuevo</Button>
+                    }}
+                    > <i class="bi bi-plus-circle-fill"></i>  Agregar nuevo pedido</button>
                     <form className={`bg-secondary ${Styles["nuevoItem__pedidos-form"]}`} style={{ height: showNuevoPedidoForm ? "auto" : undefined }}>
-                        <h4>
+                        <h4 className={Styles['texto-de-nuevo-pedido']}>
                             Nuevo Pedido
                         </h4>
-                        <div className="">
+                        <div className={Styles['container-div-del-form']}>
                             <label>N° Pedido</label>
                             <input
                                 type="number"
                                 placeholder="Indique numero de pedido"
+                                className={Styles['input-form']}
                             />
                         </div>
-                        <div className="">
+                        <div className={Styles['container-div-del-form']}>
                             <label>Nombre y apellido</label>
-                            <input type="text" placeholder="Nombre y apellido de quien hace el pedido" />
+                            <input type="text" placeholder="Nombre y apellido de quien hace el pedido" className={Styles['input-form']}/>
                         </div>
-                        <div className="">
+                        <div className={Styles['container-div-del-form']}>
                             <label>Telefono</label>
-                            <input type="tel" placeholder="Telefono del cliente" />
+                            <input type="tel" placeholder="Telefono del cliente" className={Styles['input-form']} />
                         </div>
 
-                        <div className="col-10">
+                        <div className="col-10 m-5">
                             <Accordion defaultActiveKey="0">
                                 <Accordion.Item eventKey="0">
                                     <Accordion.Header>Articulos</Accordion.Header>
@@ -84,18 +86,20 @@ function PedidosCrud() {
                                 </Accordion.Item>
                             </Accordion>
                         </div>
-                        <div className="">
+
+                        
+                        <div className={Styles['container-div-del-form']}>
                             <label>Precio Total</label>
-                            <input type="text" placeholder="Indique precio total del pedido" />
+                            <input type="text" placeholder="Indique precio total del pedido" className={Styles['input-form']} />
                         </div>
-                        <Button className="bg-dark">Crear</Button>
+                        <button className={`m-5 ${Styles["button-de-pedidos"]}`}>Crear</button>
                         {/* <Button className="bg-dark" onClick={agregarNuevoPedido}>Crear</Button> */}
 
                     </form>
                 </Col>
 
                 <Col >
-                    <table className="bg-warning">
+                    <table className={`bg-warning ${Styles["tabla-de-acreedores"]}`}>
                         <thead>
                             <tr>
                                 <th className="text-center">N° Pedido</th>
@@ -132,7 +136,7 @@ function PedidosCrud() {
                 </Col>
             </Row>
 
-        </>
+        </div>
     )
 }
 
