@@ -23,14 +23,14 @@ function AcreedoresCrud() {
             <Row className="d-flex flex-column m-1">
                 <Col className={Styles['col-de-acreedores']}>
                     <h2 className={Styles['titulo-de-acreedores']} >Acreedores Varios</h2>
-                    <button className={Styles['button-de-pedidos']}
+                    <button className={`m-2 ${Styles['button-de-pedidos']}`}
                         variant="info"
                         onClick={() => {
                             setshowNuevoAcreeForm((prevState) => !prevState);
 
                         }}
                     ><i class="bi bi-person-fill-add"></i>Nuevo acreedor</button>
-                    <form className={`bg-secondary ${Styles["nuevoItem__acree-form"]}`} style={{ height: showNuevoAcreeForm ? "auto" : undefined }}>
+                    <form className={`bg-secondary ${Styles["nuevoItem__acree-form"]}`} style={{ display: showNuevoAcreeForm ? "flex" : "none", height: showNuevoAcreeForm ? "auto" : "10px" }}>
                         <h4 className={Styles['titulo-de-acreedores']}>    Nuevo acreedor </h4>
                         <div className={Styles['container-div-del-form']}>
                             <label>Nombre y apellido</label>
