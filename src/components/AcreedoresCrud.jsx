@@ -54,6 +54,7 @@ function AcreedoresCrud() {
 
                 </Col>
                 <Col className={Styles['col-de-acreedores-2']}>
+                        <h2 className={Styles['titulo-de-acreedores']}>Tabla de Acreedores existentes</h2>
                     <table className={Styles['tabla-de-acreedores']}>
                         <thead>
                             <tr className={Styles['bordes-blancos']}>

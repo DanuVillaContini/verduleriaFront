@@ -14,19 +14,7 @@
 }
 
 .texto-de-nuevo-pedido{
-    color: green;
-}
-
-.div-de-pedidos{
-    font-family: 'Karla', sans-serif;
-    background: linear-gradient(315deg, hsla(44, 80%, 47%, 1) 7%, hsla(173, 17%, 29%, 1) 100%);
-    margin: 0;
-    padding: 0;
-    display: flex;
-    background: linear-gradient(to right, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url(../assets/verduleria2.jpg);
-    background-size: cover;
-    background-position: center center;
-
+    color: white;
 }
 
 .div-de-pedidos h2{
@@ -40,7 +28,13 @@
 
 .div-de-pedidos{
     font-family: 'Karla', sans-serif;
-    background: linear-gradient(315deg, hsla(44, 80%, 47%, 1) 7%, hsla(173, 17%, 29%, 1) 100%);
+    margin: 0;
+    padding: 0;
+    display: flex;
+    background-size: cover;
+    background-position: center center;
+    font-family: 'Karla', sans-serif;
+    background-color: rgb(26, 94, 86);
     margin: 0;
     padding: 0;
     display: flex;
@@ -61,7 +55,6 @@
 
 .div-de-acreedores{
         font-family: 'Karla', sans-serif;
-        background: linear-gradient(315deg, hsla(44, 80%, 47%, 1) 7%, hsla(173, 17%, 29%, 1) 100%);
         margin: 0;
         padding: 0;
         display: flex;
@@ -75,6 +68,8 @@
         position: relative;
         z-index: 3;
         padding-bottom: 5%;
+        background-color: hsla(44, 80%, 47%, 1);
+
 }
 
 .col-de-acreedores-2{
@@ -87,7 +82,8 @@
     width: 70vw;
     background-color: rgb(132, 43, 210);
     /* border: 2px black solid; */
-    background: linear-gradient(to right, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), url(../assets/verduleria2.jpg);
+    background-color: black;    
+    background-position: center center;
     color: white;
     border-radius: 20px;
 }
@@ -111,7 +107,7 @@
     text-transform: uppercase;
     color: #2c9caf;
     transition: all 1000ms;
-    font-size: 15px;
+    font-size: 10px;
     position: relative;
     overflow: hidden;
     outline: 2px solid #2c9caf;
@@ -142,7 +138,7 @@
   }
 
 
-.button-de-acreedores i{
+.button-de-pedidos i{
 margin-right: 15px;
 }
 
@@ -174,8 +170,9 @@ margin-right: 15px;
     align-items: center;
     justify-content: space-around;
     width: 100vw;
-    background: linear-gradient(to right, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url(../assets/verduleria1.jpg);
-
+    /* background-color: hsla(44, 80%, 47%, 1); */
+    background-color: transparent;
+    border: black 1px solid;
 }
 
 
@@ -188,6 +185,9 @@ margin-right: 15px;
     align-items: center;
     justify-content: center;
     background: linear-gradient(to right, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url(../assets/verduleria1.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
     border: 1px solid white;
     border-radius: 10px;
     margin: 5% 0;
