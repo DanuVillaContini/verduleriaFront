@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './LoginEstilo.css';
+import '../styles/LoginEstilo.css';
 
 
 function Login() {
@@ -16,6 +16,7 @@ function Login() {
   };
 
   return (
+    <div className="center-container">
     <div className="login-container">
       <h2>Iniciar sesión</h2>
       <input
@@ -41,6 +42,7 @@ function Login() {
       <button className="login-button" onClick={handleLogin}>
         Iniciar sesión
       </button>
+    </div>
     </div>
   );
 }

@@ -2,8 +2,8 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import AuthRouter from "./routes/AuthRouter";
 import Screenlogin from "./screen/Screenlogin";
 import React from 'react';
-import LoginForm from './paginas/Login/index';
-import './paginas/Login/LoginEstilo.css';
+import LoginForm from './components/index';
+import './styles/LoginEstilo.css';
 
 
 function App() {
