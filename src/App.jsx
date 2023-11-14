@@ -1,6 +1,6 @@
 import Form from "./components/Login";
 import logo from './assets/img/logo.png'
-import './styles/LoginEstilo.css';
+
 
 function App() {
   return (
