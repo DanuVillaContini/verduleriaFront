@@ -1,9 +1,10 @@
+import CrudEmpleados from "../../components/CrudEmpleados"
 
 
 function ScreenEmpleados() {
     return (
         <div>
-            <h1>Empleados</h1>
+            <CrudEmpleados/>
         </div>
     )
 }
