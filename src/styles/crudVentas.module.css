@@ -29,7 +29,6 @@
 .div-de-pedidos{
     font-family: 'Karla', sans-serif;
     margin: 0;
-    padding: 0;
     display: flex;
     background-size: cover;
     background-position: center center;
@@ -148,6 +147,7 @@ margin-right: 15px;
     text-align: center;
     font-weight: 600;
     color: white;
+    width: 100vw;
 }
 
 .button-de-acreedores{
@@ -170,9 +170,9 @@ margin-right: 15px;
     align-items: center;
     justify-content: space-around;
     width: 100vw;
-    /* background-color: hsla(44, 80%, 47%, 1); */
     background-color: transparent;
-    border: black 1px solid;
+    /* border: black 1px solid; */
+    padding: 5%;
 }
 
 
@@ -184,7 +184,7 @@ margin-right: 15px;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    background: linear-gradient(to right, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url(../assets/verduleria1.jpg);
+    background: linear-gradient(to right, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url(../assets/verduleria2.jpg);
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center center;
@@ -227,4 +227,22 @@ margin-right: 15px;
     display: flex;
     flex-direction: column;
 }
+ .col-de-acreedores-2{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 5%;
+ }
 
+.titulo-pedidos-delivery{
+    margin: 5%;
+}
+
+.padding-extra{
+    padding: 5%;
+}
+
+.titulo-de-acreedores{
+    color: white;
+}

@@ -43,7 +43,7 @@ function PedidosCrud() {
                             setshowNuevoPedidoForm((prevState) => !prevState);
                     }}
                     > <i class="bi bi-plus-circle-fill"></i>  Agregar nuevo pedido</button>
-                    <form className={`bg-secondary ${Styles["nuevoItem__pedidos-form"]}`} style={{ height: showNuevoPedidoForm ? "auto" : undefined }}>
+                    <form className={`bg-secondary ${Styles["nuevoItem__pedidos-form"]}`} style={{ display: showNuevoPedidoForm ? "flex" : "none", height: showNuevoPedidoForm ? "auto" : "10px" }}>
                         <h4 className={Styles['texto-de-nuevo-pedido']}>
                             Nuevo Pedido
                         </h4>
