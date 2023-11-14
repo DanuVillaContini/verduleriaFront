@@ -1,0 +1,5 @@
+.nuevoItem__provee-form{
+    height: 0px;
+    overflow: hidden;
+    transition: all ease .3s;
+}

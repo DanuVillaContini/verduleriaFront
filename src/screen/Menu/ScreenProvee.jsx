@@ -1,10 +1,13 @@
+import CrudProveedores from "../../components/CrudProveedores"
 
 function ScreenProvee() {
     return (
-        <div>
-            <h1>Proveedores</h1>
+        <>
+            <div>
+                <CrudProveedores/>
+            </div>
 
-        </div>
+        </>
     )
 }
 

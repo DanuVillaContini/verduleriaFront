@@ -1,0 +1,10 @@
+.nuevoItem__stock-form{
+    height: 0px;
+    overflow: hidden;
+    transition: all ease .3s;
+}
+.nuevoItem__salidas-form{
+    height: 0px;
+    overflow: hidden;
+    transition: all ease .3s;
+}

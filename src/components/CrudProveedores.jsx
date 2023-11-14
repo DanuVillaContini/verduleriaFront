@@ -1,34 +1,34 @@
-import { useEffect } from "react";
-import { useState } from "react"
 import { Button, Col, Container, Modal, Row } from "react-bootstrap";
-import Styles from "../styles/crudEmpleados.module.css"
+import Styles from "../styles/crudProveedores.module.css"
+import { useEffect, useState } from "react";
 
-
-function CrudEmpleados() {
+function CrudProveedores() {
     const mostrarItem = [
-        { _id: 1, name: "Rogelio Bermudes", apellido: "Costa", telefono: 381222333,correo:"example@example.com", dni: 11222333 },
-        { _id: 2, name: "Sandra Raco", apellido: "Costa", telefono: 381222333,correo:"example@example.com", dni: 11222333 },
-        { _id: 3, name: "Carlos Peremulter", apellido: "Costa", telefono: 381222333,correo:"example@example.com", dni: 11222333 },
-        { _id: 4, name: "Sabrina Perez", apellido: "Costa", telefono: 381222333,correo:"example@example.com", dni: 11222333 },
-        { _id: 5, name: "Octavio Ponce", apellido: "Costa", telefono: 381222333,correo:"example@example.com", dni: 11222333 },
-        { _id: 6, name: "Silvina Escupidero", apellido: "Costa", telefono: 381222333,correo:"example@example.com", dni: 11222333 },
-        { _id: 7, name: "Roberta Rojo", apellido: "Costa", telefono: 381222333,correo:"example@example.com", dni: 11222333 },
-        { _id: 8, name: "Ellen Sanchez", apellido: "Costa", telefono: 381222333,correo:"example@example.com", dni: 11222333 },
-        { _id: 9, name: "Sasha Costa", apellido: "Costa", telefono: 381222333,correo:"example@example.com", dni: 11222333 }
+        { _id: 1, name: "Rogelio Bermudes", apellido: "Costa", telefono: 381222333,correo:"example@example.com", dni: 11222333, productos: "frutas" },
+        { _id: 2, name: "Sandra Raco", apellido: "Costa", telefono: 381222333,correo:"example@example.com", dni: 11222333, productos: "frutas" },
+        { _id: 3, name: "Carlos Peremulter", apellido: "Costa", telefono: 381222333,correo:"example@example.com", dni: 11222333, productos: "frutas" },
+        { _id: 4, name: "Sabrina Perez", apellido: "Costa", telefono: 381222333,correo:"example@example.com", dni: 11222333, productos: "frutas" },
+        { _id: 5, name: "Octavio Ponce", apellido: "Costa", telefono: 381222333,correo:"example@example.com", dni: 11222333, productos: "verduras" },
+        { _id: 6, name: "Silvina Escupidero", apellido: "Costa", telefono: 381222333,correo:"example@example.com", dni: 11222333, productos: "verduras" },
+        { _id: 7, name: "Roberta Rojo", apellido: "Costa", telefono: 381222333,correo:"example@example.com", dni: 11222333, productos: "verduras" },
+        { _id: 8, name: "Ellen Sanchez", apellido: "Costa", telefono: 381222333,correo:"example@example.com", dni: 11222333, productos: "verduras" },
+        { _id: 9, name: "Sasha Costa", apellido: "Costa", telefono: 381222333,correo:"example@example.com", dni: 11222333, productos: "verduras" }
     ]
 
+
     // const [listApi, setlistApi] = useState([])
-    const [showNuevoPedidoForm, setshowNuevoPedidoForm] = useState(false)
+    const [showNuevoProveeForm, setshowNuevoProveeForm] = useState(false)
     const [showUpdateModal, setShowUpdateModal] = useState(false)
     const [showDeleteModal, setShowDeleteModal] = useState(false)
     const [showSuccessModal, setShowSuccessModal] = useState(false)
+
 
     const [nameItem, setnameItem] = useState([])
     const [apellidoItem, setapellidoItem] = useState([])
     const [telefonoItem, settelefonoItem] = useState([])
     const [correoItem, setcorreoItem] = useState([])
     const [dniItem, setdniItem] = useState([])
-    const [passItem, setpassItem] = useState([])
+    const [productItem, setproductItem] = useState([])
 
     const [updateId, setupdateId] = useState([])
     const [updateName, setupdateName] = useState([])
@@ -36,104 +36,21 @@ function CrudEmpleados() {
     const [updateTelefono, setupdateTelefono] = useState([])
     const [updateCorreo, setupdateCorreo] = useState([])
     const [updateDni, setupdateDni] = useState([])
+    const [updateproductItem, setupdateproductItem] = useState([])
 
     const [deleteId, setDeleteId] = useState("");
 
     const getListApi = async () => {
-        try {
-            var requestOptions = {
-                method: 'GET',
-                redirect: 'follow'
-            };
-
-            const response = await fetch("https://estetica-backend-5ltx.onrender.com/usuario/mostrar", requestOptions)
-            if (response.status >= 400) return alert("No se pudieron obtener los datos de la Api")
-            const result = await response.json()
-            setlistApi(result.data)
-        } catch (error) {
-            console.error(error);
-        }
+        //funcion fetch para traer todo lo del backend
     }
     const nuevoItem = async () => {
-        try {
-            var myHeaders = new Headers();
-            myHeaders.append("Content-Type", "application/json");
-
-            var raw = JSON.stringify({
-                name: nameItem,
-                apellido: apellidoItem,
-                telefono: telefonoItem,
-                correo: correoItem,
-                dni: dniItem
-            });
-
-            var requestOptions = {
-                method: 'POST',
-                headers: myHeaders,
-                body: raw,
-                redirect: 'follow'
-            };
-
-            const response = await fetch("https://estetica-backend-5ltx.onrender.com/usuario/register", requestOptions)
-            if (!response.ok) throw new Error("no se pudo crear el elemento")
-
-            setnameItem("")
-            setapellidoItem("")
-            settelefonoItem("")
-            setcorreoItem("")
-            setdniItem("")
-
-            await getListApi()
-        } catch (error) {
-            console.error(error);
-        }
+        //funcion fetch para crear nuevo
     }
     const updateItem = async () => {
-        try {
-            let myHeaders = new Headers();
-            myHeaders.append("Content-Type", "application/json");
-
-            let raw = JSON.stringify({
-                name: updateName,
-                apellido: updateApellido,
-                telefono: updateTelefono,
-                correo: updateCorreo,
-                dni: updateDni
-            });
-
-            let requestOptions = {
-                method: 'PUT',
-                headers: myHeaders,
-                body: raw,
-                redirect: 'follow'
-            };
-
-            const response = await fetch("https://estetica-backend-5ltx.onrender.com/usuario/actualizar/" + updateId, requestOptions)
-            if (!response.ok) throw new Error("no se pudo actualizar el elemento")
-            setShowSuccessModal(true);
-            setShowUpdateModal(false)
-            await getListApi()
-        } catch (error) {
-            console.error(error);
-        }
+        //funcion fetch para actualizar nuevo
     }
     const deleteItem = async (_id) => {
-        try {
-
-            var requestOptions = {
-                method: 'DELETE',
-                redirect: 'follow'
-            };
-
-            const response = await fetch("https://estetica-backend-5ltx.onrender.com/usuario/eliminar/" + _id, requestOptions)
-            if (!response.ok) throw new Error("no se pudo eliminar el personal")
-            setDeleteId("");
-            setShowSuccessModal(true);
-            setShowDeleteModal(false);
-            await getListApi()
-        } catch (error) {
-            console.error(error);
-        }
+        //funcion fetch para eliminar nuevo
 
     }
     const handleSubmit = async () => {
@@ -150,24 +67,23 @@ function CrudEmpleados() {
     const handleConfirmDelete = async () => {
         await deleteItem(deleteId);
     }
-
     useEffect(() => {
         getListApi()
     }, [])
-
     return (
-        <>
-            <Container >
+        <div>
+            <Container>
+                {/* FORM Y BUTTON PARA CREAR NUEVO ITEM */}
                 <Row className="d-flex flex-row flex-column m-1">
                     <Col>
-                        <h1>Empleados</h1>
+                        <h1>Proveedores</h1>
                         <Button
                             variant="info"
                             onClick={() => {
-                                setshowNuevoPedidoForm((prevState) => !prevState);
+                                setshowNuevoProveeForm((prevState) => !prevState);
                             }}
                         >Nuevo</Button>
-                        <form className={`bg-secondary ${Styles["nuevoItem__empleados-form"]}`} style={{ height: showNuevoPedidoForm ? "auto" : undefined }}>
+                        <form className={`bg-secondary ${Styles["nuevoItem__provee-form"]}`} style={{ height: showNuevoProveeForm ? "auto" : undefined }}>
                             <h1>
                                 Agregar Nuevo
                             </h1>
@@ -211,9 +127,12 @@ function CrudEmpleados() {
                                 }} />
                             </div>
                             <div className="">
-                                <label>Password</label>
-                                <input type="password" placeholder="Your password" value={passItem} onChange={(e) => setpassItem(e.target.value)} maxLength={20}
-                                    minLength={9} />
+                                <label>Productos que provee</label>
+                                <input type="text" placeholder="Productos" value={apellidoItem} onChange={(e) => {
+                                    const onlyLettersAndSpaces = e.target.value.replace(/[^A-Za-zñÑ\s]/g, "");
+                                    setproductItem(onlyLettersAndSpaces);
+
+                                }} />
                             </div>
                             <button className="bg-danger" onClick={handleSubmit}
                                 disabled={
@@ -222,12 +141,13 @@ function CrudEmpleados() {
                                     !telefonoItem ||
                                     !correoItem ||
                                     !dniItem ||
-                                    !passItem
+                                    !productItem
                                 }>Agregar</button>
                         </form>
                     </Col>
                 </Row>
 
+                {/* FORM PARA ACTUALIZAR NUEVO- MODAL  */}
                 <Modal
                     show={showUpdateModal}
                     onHide={() => setShowUpdateModal(false)}
@@ -258,7 +178,6 @@ function CrudEmpleados() {
                                 <input type="text" placeholder="Your Apellido" value={updateApellido} onChange={(e) => {
                                     const onlyLettersAndSpaces = e.target.value.replace(/[^A-Za-zñÑ\s]/g, "");
                                     setupdateApellido(onlyLettersAndSpaces);
-
                                 }} />
                             </div>
                             <div className="">
@@ -281,6 +200,13 @@ function CrudEmpleados() {
                                     setupdateDni(onlyNumbers);
                                 }} />
                             </div>
+                            <div className="">
+                                <label>Productos</label>
+                                <input type="text" placeholder="Productos que provee" value={updateApellido} onChange={(e) => {
+                                    const onlyLettersAndSpaces = e.target.value.replace(/[^A-Za-zñÑ\s]/g, "");
+                                    setupdateproductItem(onlyLettersAndSpaces);
+                                }} />
+                            </div>
                             <button onClick={() => { setShowUpdateModal(false) }}>Cancelar</button>
                             <button className="bg-danger" onClick={handleUpdate}
                                 disabled={
@@ -288,12 +214,14 @@ function CrudEmpleados() {
                                     !updateApellido ||
                                     !updateTelefono ||
                                     !updateCorreo ||
-                                    !updateDni
+                                    !updateDni ||
+                                    !updateproductItem
                                 }>Actualizar</button>
                         </form>
                     </Modal.Body>
                 </Modal>
 
+                {/* TABLA QUE RENDERIZA LO QUE TRAE DEL BACK  */}
                 <Row>
                     <table className="bg-warning">
                         <thead>
@@ -303,6 +231,7 @@ function CrudEmpleados() {
                                 <th className="">Telefono</th>
                                 <th className="">Correo</th>
                                 <th className="">N° DNI</th>
+                                <th className="">Productos</th>
                                 <th className="">Opciones</th>
                             </tr>
                         </thead>
@@ -315,6 +244,7 @@ function CrudEmpleados() {
                                         <td data-titulo="Telefono">{item.telefono}</td>
                                         <td data-titulo="correo">{item.correo}</td>
                                         <td data-titulo="N° DNI">{item.dni}</td>
+                                        <td data-titulo="Productos">{item.productos}</td>
                                         <td data-titulo="Opciones">
                                             <button onClick={() => {
                                                 handleDeletePersonal(item._id);
@@ -331,6 +261,7 @@ function CrudEmpleados() {
                                                     setupdateTelefono(item.telefono)
                                                     setupdateCorreo(item.correo)
                                                     setupdateDni(item.dni)
+                                                    setupdateproductItem(item.productos)
                                                 }}
                                             ><i className="bi bi-pencil-square"></i></button>
 
@@ -341,7 +272,8 @@ function CrudEmpleados() {
                         </tbody>
                     </table>
                 </Row>
-                
+
+                {/* MODAL PARA ELIMINAR ITEM DE LA TABLA  */}
                 <Modal show={showDeleteModal} onHide={() => setShowDeleteModal(false)}>
                     <Modal.Header closeButton>
                         <Modal.Title className="font-monospace ">
@@ -358,6 +290,7 @@ function CrudEmpleados() {
                     </Modal.Footer>
                 </Modal>
 
+                {/* MODAL GENERICO PARA CONFIRMA ACCION  */}
                 <Modal
                     show={showSuccessModal}
                     onHide={() => setShowSuccessModal(false)}
@@ -378,10 +311,8 @@ function CrudEmpleados() {
                 </Modal>
 
             </Container>
-
-
-        </>
+        </div>
     )
 }
 
-export default CrudEmpleados
+export default CrudProveedores
