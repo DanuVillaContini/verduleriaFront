@@ -1,21 +1,19 @@
-import { BrowserRouter, Route, Routes } from "react-router-dom";
-import AuthRouter from "./routes/AuthRouter";
-import Screenlogin from "./screen/Screenlogin";
-import React from 'react';
-import LoginForm from './components/index';
-import './styles/LoginEstilo.css';
-
+import Form from "./components";
+import logo from './assets/img/logo.png'
 
 function App() {
-
-
   return (
-    <>
-     <div className="App">
-      <LoginForm />
+    <div className="flex w-full h-screen">
+      <div className="w-full flex items-center justify-center lg:w-1/2">      
+        <Form />    
+      </div>
+      <div className="hidden lg:flex h-full w-1/2 items-center justify-center bg-yellow-400">
+        <div>
+          <img src={logo} alt="" />
+        </div>
+      </div>
     </div>
-    </>
-  )
+  );
 }
 
-export default App
+export default App;
