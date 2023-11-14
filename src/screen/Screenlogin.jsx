@@ -1,10 +1,9 @@
+// function Screenlogin() {
+//     return (
+//         <div>
+//         <h1>Login</h1>
+//         </div>
+//     )
+// }
 
-function Screenlogin() {
-    return (
-        <div>
-        <h1>Login</h1>
-        </div>
-    )
-}
-
-export default Screenlogin
+// export default Screenlogin
