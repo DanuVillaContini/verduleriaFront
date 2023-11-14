@@ -2,9 +2,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import AuthRouter from "./routes/AuthRouter";
 import Screenlogin from "./screen/Screenlogin";
 
-
 function App() {
-
 
   return (
     <>

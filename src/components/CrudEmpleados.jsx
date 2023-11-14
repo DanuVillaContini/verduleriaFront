@@ -5,7 +5,19 @@ import Styles from "../styles/crudEmpleados.module.css"
 
 
 function CrudEmpleados() {
-    const [listApi, setlistApi] = useState([])
+    const mostrarItem = [
+        { _id: 1, name: "Rogelio Bermudes", apellido: "Costa", telefono: 381222333,correo:"example@example.com", dni: 11222333 },
+        { _id: 2, name: "Sandra Raco", apellido: "Costa", telefono: 381222333,correo:"example@example.com", dni: 11222333 },
+        { _id: 3, name: "Carlos Peremulter", apellido: "Costa", telefono: 381222333,correo:"example@example.com", dni: 11222333 },
+        { _id: 4, name: "Sabrina Perez", apellido: "Costa", telefono: 381222333,correo:"example@example.com", dni: 11222333 },
+        { _id: 5, name: "Octavio Ponce", apellido: "Costa", telefono: 381222333,correo:"example@example.com", dni: 11222333 },
+        { _id: 6, name: "Silvina Escupidero", apellido: "Costa", telefono: 381222333,correo:"example@example.com", dni: 11222333 },
+        { _id: 7, name: "Roberta Rojo", apellido: "Costa", telefono: 381222333,correo:"example@example.com", dni: 11222333 },
+        { _id: 8, name: "Ellen Sanchez", apellido: "Costa", telefono: 381222333,correo:"example@example.com", dni: 11222333 },
+        { _id: 9, name: "Sasha Costa", apellido: "Costa", telefono: 381222333,correo:"example@example.com", dni: 11222333 }
+    ]
+
+    // const [listApi, setlistApi] = useState([])
     const [showNuevoPedidoForm, setshowNuevoPedidoForm] = useState(false)
     const [showUpdateModal, setShowUpdateModal] = useState(false)
     const [showDeleteModal, setShowDeleteModal] = useState(false)
@@ -296,7 +308,7 @@ function CrudEmpleados() {
                         </thead>
                         <tbody>
                             {
-                                listApi.map((item) => (
+                                mostrarItem.map((item) => (
                                     <tr key={item._id}>
                                         <td data-titulo="Nombre">{item.name}</td>
                                         <td data-titulo="Apellido">{item.apellido}</td>
@@ -307,7 +319,7 @@ function CrudEmpleados() {
                                             <button onClick={() => {
                                                 handleDeletePersonal(item._id);
                                             }}>
-                                                <i className="bi bi-trash"></i> Eliminar
+                                                <i className="bi bi-trash"></i> 
                                             </button>
 
                                             <button
@@ -320,7 +332,7 @@ function CrudEmpleados() {
                                                     setupdateCorreo(item.correo)
                                                     setupdateDni(item.dni)
                                                 }}
-                                            ><i className="bi bi-pencil-square">Update</i></button>
+                                            ><i className="bi bi-pencil-square"></i></button>
 
                                         </td>
                                     </tr>

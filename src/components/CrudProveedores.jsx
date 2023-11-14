@@ -3,7 +3,20 @@ import Styles from "../styles/crudProveedores.module.css"
 import { useEffect, useState } from "react";
 
 function CrudProveedores() {
-    const [listApi, setlistApi] = useState([])
+    const mostrarItem = [
+        { _id: 1, name: "Rogelio Bermudes", apellido: "Costa", telefono: 381222333,correo:"example@example.com", dni: 11222333, productos: "frutas" },
+        { _id: 2, name: "Sandra Raco", apellido: "Costa", telefono: 381222333,correo:"example@example.com", dni: 11222333, productos: "frutas" },
+        { _id: 3, name: "Carlos Peremulter", apellido: "Costa", telefono: 381222333,correo:"example@example.com", dni: 11222333, productos: "frutas" },
+        { _id: 4, name: "Sabrina Perez", apellido: "Costa", telefono: 381222333,correo:"example@example.com", dni: 11222333, productos: "frutas" },
+        { _id: 5, name: "Octavio Ponce", apellido: "Costa", telefono: 381222333,correo:"example@example.com", dni: 11222333, productos: "verduras" },
+        { _id: 6, name: "Silvina Escupidero", apellido: "Costa", telefono: 381222333,correo:"example@example.com", dni: 11222333, productos: "verduras" },
+        { _id: 7, name: "Roberta Rojo", apellido: "Costa", telefono: 381222333,correo:"example@example.com", dni: 11222333, productos: "verduras" },
+        { _id: 8, name: "Ellen Sanchez", apellido: "Costa", telefono: 381222333,correo:"example@example.com", dni: 11222333, productos: "verduras" },
+        { _id: 9, name: "Sasha Costa", apellido: "Costa", telefono: 381222333,correo:"example@example.com", dni: 11222333, productos: "verduras" }
+    ]
+
+
+    // const [listApi, setlistApi] = useState([])
     const [showNuevoProveeForm, setshowNuevoProveeForm] = useState(false)
     const [showUpdateModal, setShowUpdateModal] = useState(false)
     const [showDeleteModal, setShowDeleteModal] = useState(false)
@@ -224,7 +237,7 @@ function CrudProveedores() {
                         </thead>
                         <tbody>
                             {
-                                listApi.map((item) => (
+                                mostrarItem.map((item) => (
                                     <tr key={item._id}>
                                         <td data-titulo="Nombre">{item.name}</td>
                                         <td data-titulo="Apellido">{item.apellido}</td>
@@ -236,7 +249,7 @@ function CrudProveedores() {
                                             <button onClick={() => {
                                                 handleDeletePersonal(item._id);
                                             }}>
-                                                <i className="bi bi-trash"></i> Eliminar
+                                                <i className="bi bi-trash"></i> 
                                             </button>
 
                                             <button
@@ -250,7 +263,7 @@ function CrudProveedores() {
                                                     setupdateDni(item.dni)
                                                     setupdateproductItem(item.productos)
                                                 }}
-                                            ><i className="bi bi-pencil-square">Update</i></button>
+                                            ><i className="bi bi-pencil-square"></i></button>
 
                                         </td>
                                     </tr>

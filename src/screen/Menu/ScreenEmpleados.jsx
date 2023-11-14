@@ -1,6 +1,5 @@
 import CrudEmpleados from "../../components/CrudEmpleados"
 
-
 function ScreenEmpleados() {
     return (
         <div>
