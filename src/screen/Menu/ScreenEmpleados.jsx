@@ -1,16 +1,15 @@
+import CrudEmpleados from "../../components/CrudEmpleados"
 import SideBar from "../../components/SideBar"
-import "bootstrap/dist/css/bootstrap.min.css"
-
-
-
 
 function ScreenEmpleados() {
     return (
         <>
-          <SideBar/>
-          
+            <div className="d-flex">
+                <SideBar/>
+                <CrudEmpleados />
+            </div>
+            
         </>
-
     )
 }
 

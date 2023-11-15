@@ -1,11 +1,9 @@
 
 import AuthRouter from "./routes/AuthRouter";
-import ScreenProvee from "./screen/Menu/ScreenProvee";
 import Screenlogin from "./screen/Screenlogin";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 function App() {
-
 
   return (
     
