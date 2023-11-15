@@ -49,7 +49,7 @@ function AcreedoresCrud() {
                             <input className={Styles['input-form']} type="text" placeholder="Indique precio total" />
                         </div>
 
-                        <button className={`bg-dark mt-5 ${Styles["button-de-pedidos"]}`}> <i class="bi bi-plus-circle"></i> Crear</button>
+                        <button className={`bg-dark mt-5 ${Styles["button-de-pedidos"]}`}> <i className="bi bi-plus-circle"></i> Crear</button>
                     </form>
 
                 </Col>
