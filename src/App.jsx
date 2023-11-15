@@ -5,10 +5,10 @@ import logo from './assets/img/logo.png'
 function App() {
   return (
     <div className="flex w-full h-screen">
-      <div className="w-full flex items-center justify-center lg:w-1/2 bg-green-700">      
+      <div className="w-full flex items-center justify-center lg:w-1/2 bg-[#3D5653]">      
         <Form />    
       </div>
-      <div className="hidden lg:flex h-full w-1/2 items-center justify-center bg-yellow-400">
+      <div className="hidden lg:flex h-full w-1/2 items-center justify-center bg-[#D6A218]">
         <div>
           <img src={logo} alt="" />
         </div>
