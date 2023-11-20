@@ -1,20 +1,20 @@
-import Form from "./components/Login";
-import logo from './assets/img/logo.png'
 
+import AuthRouter from "./routes/AuthRouter";
+import Screenlogin from "./screen/Screenlogin";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 function App() {
+
   return (
-    <div className="flex w-full h-screen">
-      <div className="w-full flex items-center justify-center lg:w-1/2 bg-[#3D5653]">      
-        <Form />    
-      </div>
-      <div className="hidden lg:flex h-full w-1/2 items-center justify-center bg-[#D6A218]">
-        <div>
-          <img src={logo} alt="" />
-        </div>
-      </div>
-    </div>
-  );
+    <>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Screenlogin/>}/>
+          <Route path="/auth/*" element={<AuthRouter/>} />
+        </Routes>
+      </BrowserRouter>
+    </>
+  )
 }
 
-export default App;
+export default App
