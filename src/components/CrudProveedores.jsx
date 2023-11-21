@@ -71,70 +71,71 @@ function CrudProveedores() {
         getListApi()
     }, [])
     return (
-        <div>
+        <div className={Styles['div-de-proveedores']}>
             <Container>
                 {/* FORM Y BUTTON PARA CREAR NUEVO ITEM */}
                 <Row className="d-flex flex-row flex-column m-1">
-                    <Col>
-                        <h1>Proveedores</h1>
-                        <Button
-                            variant="info"
-                            onClick={() => {
-                                setshowNuevoProveeForm((prevState) => !prevState);
-                            }}
-                        >Nuevo</Button>
-                        <form className={`bg-secondary ${Styles["nuevoItem__provee-form"]}`} style={{ height: showNuevoProveeForm ? "auto" : undefined }}>
-                            <h1>
+                    <Col className={Styles['col-de-proveedores']}>
+                        <h2>Proveedores</h2>
+                        <button className={Styles['button-de-proveedores']}
+                        variant="info"
+                        onClick={() => {
+                            setshowNuevoProveeForm((prevState) => !prevState);
+                    }}
+                    > <i className="bi bi-plus-circle-fill"></i>  Agregar nuevo proveedor</button>
+                        <form className={`bg-secondary ${Styles["nuevoItem__provee-form"]}`} style={{ display: showNuevoProveeForm ? "flex" : "none", height: showNuevoProveeForm ? "auto" : "10px" }}>
+                            <h4>
                                 Agregar Nuevo
-                            </h1>
-                            <div className="">
+                            </h4>
+                            <div className={Styles['container-div-del-form']}>
                                 <label>Nombre</label>
                                 <input
                                     type="text"
                                     placeholder="Your name"
                                     value={nameItem}
+                                    className={Styles['input-form']}
                                     onChange={(e) => {
                                         const onlyLettersAndSpaces = e.target.value.replace(/[^A-Za-zñÑ\s]/g, "");
                                         setnameItem(onlyLettersAndSpaces);
                                     }} />
                             </div>
-                            <div className="">
+                            <div className={Styles['container-div-del-form']}>
                                 <label>Apellido</label>
-                                <input type="text" placeholder="Your Apellido" value={apellidoItem} onChange={(e) => {
+                                <input type="text" placeholder="Your Apellido" value={apellidoItem} className={Styles['input-form']} onChange={(e) => {
                                     const onlyLettersAndSpaces = e.target.value.replace(/[^A-Za-zñÑ\s]/g, "");
                                     setapellidoItem(onlyLettersAndSpaces);
 
                                 }} />
                             </div>
-                            <div className="">
+                            <div className={Styles['container-div-del-form']}>
                                 <label>Phonenumber</label>
-                                <input type="tel" placeholder="Your phonenumber" value={telefonoItem} onChange={(e) => {
+                                <input type="tel" placeholder="Your phonenumber" value={telefonoItem} className={Styles['input-form']} onChange={(e) => {
                                     const input = e.target.value;
                                     const onlyNumbers = input.replace(/[^0-9]/g, "");
                                     settelefonoItem(onlyNumbers);
                                 }} />
                             </div>
-                            <div className="">
+                            <div className={Styles['container-div-del-form']}>
                                 <label>Correo</label>
-                                <input type="email" placeholder="correo@example.com" value={correoItem} onChange={(e) => setcorreoItem(e.target.value)} />
+                                <input type="email" placeholder="correo@example.com" value={correoItem} className={Styles['input-form']} onChange={(e) => setcorreoItem(e.target.value)} />
                             </div>
-                            <div className="">
+                            <div className={Styles['container-div-del-form']}>
                                 <label>Dni</label>
-                                <input type="tel" placeholder="Your DNI" value={dniItem} onChange={(e) => {
+                                <input type="tel" placeholder="Your DNI" value={dniItem} className={Styles['input-form']} onChange={(e) => {
                                     const input = e.target.value
                                     const onlyNumbers = input.replace(/[^0-9]/g, "");
                                     setdniItem(onlyNumbers);
                                 }} />
                             </div>
-                            <div className="">
+                            <div className={Styles['container-div-del-form']}>
                                 <label>Productos que provee</label>
-                                <input type="text" placeholder="Productos" value={apellidoItem} onChange={(e) => {
+                                <input type="text" placeholder="Productos" value={apellidoItem} className={Styles['input-form']} onChange={(e) => {
                                     const onlyLettersAndSpaces = e.target.value.replace(/[^A-Za-zñÑ\s]/g, "");
                                     setproductItem(onlyLettersAndSpaces);
 
                                 }} />
                             </div>
-                            <button className="bg-danger" onClick={handleSubmit}
+                            <button className={Styles['button-de-proveedores']} onClick={handleSubmit}
                                 disabled={
                                     !nameItem ||
                                     !apellidoItem ||
@@ -222,38 +223,37 @@ function CrudProveedores() {
                 </Modal>
 
                 {/* TABLA QUE RENDERIZA LO QUE TRAE DEL BACK  */}
-                <Row>
-                    <table className="bg-warning">
+                {/* <div className={Styles["tabla-de-proveedores"]}> */}
+                <div className={`bg-warning ${Styles["contenedor-de-proveedores"]}`}>
+                <table className={`bg-warning ${Styles["tabla-de-proveedores"]}`}>
                         <thead>
                             <tr>
-                                <th className="">Nombre</th>
-                                <th className="">Apellido</th>
-                                <th className="">Telefono</th>
-                                <th className="">Correo</th>
-                                <th className="">N° DNI</th>
-                                <th className="">Productos</th>
-                                <th className="">Opciones</th>
+                                <th className="text-center">Nombre</th>
+                                <th className="text-center">Apellido</th>
+                                <th className="text-center">Telefono</th>
+                                <th className="text-center">Correo</th>
+                                <th className="text-center">N° DNI</th>
+                                <th className="text-center">Productos</th>
+                                <th className="text-center">Opciones</th>
                             </tr>
                         </thead>
                         <tbody>
                             {
                                 mostrarItem.map((item) => (
                                     <tr key={item._id}>
-                                        <td data-titulo="Nombre">{item.name}</td>
-                                        <td data-titulo="Apellido">{item.apellido}</td>
-                                        <td data-titulo="Telefono">{item.telefono}</td>
-                                        <td data-titulo="correo">{item.correo}</td>
-                                        <td data-titulo="N° DNI">{item.dni}</td>
-                                        <td data-titulo="Productos">{item.productos}</td>
-                                        <td data-titulo="Opciones">
-                                            <button onClick={() => {
+                                        <td className="text-center" data-titulo="Nombre">{item.name}</td>
+                                        <td className="text-center" data-titulo="Apellido">{item.apellido}</td>
+                                        <td className="text-center" data-titulo="Telefono">{item.telefono}</td>
+                                        <td className="text-center" data-titulo="correo">{item.correo}</td>
+                                        <td className="text-center" data-titulo="N° DNI">{item.dni}</td>
+                                        <td className="text-center" data-titulo="Productos">{item.productos}</td>
+                                        <td className="text-center" data-titulo="Opciones">
+                                            <Button variant='outline-danger' className="m-1" onClick={() => {
                                                 handleDeletePersonal(item._id);
                                             }}>
-                                                <i className="bi bi-trash"></i> 
-                                            </button>
-
-                                            <button
-                                                onClick={() => {
+                                                <i className="bi bi-trash-fill" ></i>
+                                            </Button>
+                                            <Button variant='outline-success' className="m-1" onClick={() => {
                                                     setShowUpdateModal(true);
                                                     setupdateId(item._id)
                                                     setupdateName(item.name)
@@ -262,16 +262,16 @@ function CrudProveedores() {
                                                     setupdateCorreo(item.correo)
                                                     setupdateDni(item.dni)
                                                     setupdateproductItem(item.productos)
-                                                }}
-                                            ><i className="bi bi-pencil-square"></i></button>
-
+                                                }}>
+                                                <i className="bi bi-pencil-square"></i>
+                                            </Button>
                                         </td>
                                     </tr>
                                 ))
                             }
                         </tbody>
                     </table>
-                </Row>
+                </div>
 
                 {/* MODAL PARA ELIMINAR ITEM DE LA TABLA  */}
                 <Modal show={showDeleteModal} onHide={() => setShowDeleteModal(false)}>
