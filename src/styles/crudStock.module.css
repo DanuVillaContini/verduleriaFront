@@ -8,3 +8,75 @@
     overflow: hidden;
     transition: all ease .3s;
 }
+.div-de-acreedores{
+    font-family: 'Karla', sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    background-size: cover;
+    background-position: center center;
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+    justify-content: center;
+    width: 100vw;
+    position: relative;
+    z-index: 3;
+    padding-bottom: 5%;
+    background-color: rgb(26, 94, 86);
+}
+.tabla-de-acreedores{
+    margin-top: 5%;
+    font-size: 1rem;
+    width: 20vw;
+    background-color: rgb(132, 43, 210);
+    /* border: 2px black solid; */
+    background-color: black;    
+    background-position: center center;
+    color: white;
+    border-radius: 20px;
+}
+.button-de-pedidos{
+    padding: 1em 2em;
+    border: none;
+    border-radius: 5px;
+    font-weight: bold;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    color: #2c9caf;
+    transition: all 1000ms;
+    font-size: 10px;
+    position: relative;
+    overflow: hidden;
+    outline: 2px solid #2c9caf;
+}
+.container-div-del-form{
+    display: flex;
+    flex-direction: column;
+}
+.input-form{
+    background-color: rgb(20, 17, 17);
+    color:  #2c9caf;
+    border: none;
+    border-radius: 5px;
+    height: 40px;
+}
+.texto-de-nuevo-pedido{
+    color: white;
+}
+.col-de-acreedores form{
+    width: auto;
+    padding: 5%;
+    display: flex;
+    color: white;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(to right, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url(../assets/verduleria2.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+    border: 1px solid white;
+    border-radius: 10px;
+    margin: 5% 0;
+}

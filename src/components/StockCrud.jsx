@@ -2,6 +2,7 @@ import { useState } from "react"
 import { Accordion, Button, Col, Row } from "react-bootstrap";
 import Styles from "../styles/crudStock.module.css"
 
+
 function StockCrud() {
     const [showNuevoPedidoForm, setshowNuevoPedidoForm] = useState(false)
 
@@ -19,35 +20,36 @@ function StockCrud() {
     ]
     return (
         <>
+        <div className={Styles['div-de-acreedores']}>
             <Row className="d-flex flex-row flex-column m-1">
-                <Col>
+            <Col className={Styles['col-de-acreedores']}>
                     <h2>Stock Disponible</h2>
 
-                    <Button
+                    <Button className={`m-2 ${Styles['button-de-pedidos']}`}
                         variant="info"
                         onClick={() => {
                             setshowNuevoPedidoForm((prevState) => !prevState);
 
                         }}
                     >Nuevo</Button>
-                    <form className={`bg-secondary ${Styles["nuevoItem__stock-form"]}`} style={{ height: showNuevoPedidoForm ? "auto" : undefined }}>
+                    <form className={`bg-secondary ${Styles["nuevoItem__pedidos-form"]}`} style={{ display: showNuevoPedidoForm ? "flex" : "none", height: showNuevoPedidoForm ? "auto" : "10px" }}>
                         <h4>
                             Nuevo Pedido
                         </h4>
-                        <div className="">
+                        <div className={Styles['container-div-del-form']}>
                             <label>N° Pedido</label>
-                            <input
+                            <input className={Styles['input-form']}
                                 type="number"
                                 placeholder="Indique numero de pedido"
                             />
                         </div>
-                        <div className="">
+                        <div className={Styles['container-div-del-form']}>
                             <label>Nombre y apellido</label>
-                            <input type="text" placeholder="Nombre y apellido de quien hace el pedido" />
+                            <input type="text" placeholder="Nombre y apellido de quien hace el pedido" className={Styles['input-form']} />
                         </div>
-                        <div className="">
+                        <div className={Styles['container-div-del-form']}>
                             <label>Telefono</label>
-                            <input type="tel" placeholder="Telefono del cliente" />
+                            <input type="tel" placeholder="Telefono del cliente" className={Styles['input-form']} />
                         </div>
 
                         <div className="col-10">
@@ -74,16 +76,16 @@ function StockCrud() {
                         </div>
                         <div className="">
                             <label>Precio Total</label>
-                            <input type="text" placeholder="Indique precio total del pedido" />
+                            <input type="text" placeholder="Indique precio total del pedido" className={Styles['input-form']} />
                         </div>
                         <Button className="bg-dark">Crear</Button>
                         {/* <Button className="bg-dark" onClick={agregarNuevoPedido}>Crear</Button> */}
 
                     </form>
                 </Col>
-
+                
                 <Col >
-                    <table className="bg-warning">
+                <table className={`bg-warning ${Styles["tabla-de-acreedores"]}`}>
                         <thead>
                             <tr>
                                 <th className="text-center">Code</th>
@@ -117,7 +119,7 @@ function StockCrud() {
                     </table>
                 </Col>
             </Row>
-
+            </div>
         </>
     )
 }
