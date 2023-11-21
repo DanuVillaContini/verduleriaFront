@@ -5,17 +5,15 @@ import logo from "../assets/papas_hermanosss.png";
 import Styles from "../styles/SideBar.module.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 
-
 const SideBar = () => {
   return (
     <div className={Styles["flex"]}>
-
       <div className={Styles["sidebar"]}>
-        
         <div className={Styles["logoVerdu"]}>
           <img src={logo} alt="" />
         </div>
         
+
         <ul>
           <li>
             <Link to="/stock" className="btn btn-warning">
@@ -40,31 +38,29 @@ const SideBar = () => {
         </ul>
       </div>
       <div className={Styles["dropdown"]}>
-      <Dropdown>
-  <Dropdown.Toggle variant="success" id="dropdown-basic">
-    <i className="bi bi-list"></i>
-  </Dropdown.Toggle>
+        <Dropdown>
+          <Dropdown.Toggle variant="success" id="dropdown-basic">
+            <i className="bi bi-list"></i>
+          </Dropdown.Toggle>
 
-  <Dropdown.Menu className={Styles["dropdown-box"]}>
-    <Dropdown.Item href="#" className={Styles["dropdown-box"]}>
-      <Link to="">STOCK</Link>
-    </Dropdown.Item>
-    <Dropdown.Item href="#">
-      <Link to="/proveedores">PROVEEDORES</Link>
-    </Dropdown.Item>
-    <Dropdown.Item href="#">
-      <Link to="">PEDIDOS</Link>
-    </Dropdown.Item>
-    <Dropdown.Item href="#">
-      <Link to="">EMPLEADOS</Link>
-    </Dropdown.Item>
-  </Dropdown.Menu>
-</Dropdown>
-
-        </div>
+          <Dropdown.Menu className={Styles["dropdown-box"]}>
+            <Dropdown.Item href="#" className={Styles["dropdown-box"]}>
+              <Link to="">STOCK</Link>
+            </Dropdown.Item>
+            <Dropdown.Item href="#">
+              <Link to="/proveedores">PROVEEDORES</Link>
+            </Dropdown.Item>
+            <Dropdown.Item href="#">
+              <Link to="">PEDIDOS</Link>
+            </Dropdown.Item>
+            <Dropdown.Item href="#">
+              <Link to="">EMPLEADOS</Link>
+            </Dropdown.Item>
+          </Dropdown.Menu>
+        </Dropdown>
+      </div>
     </div>
   );
 };
 
 export default SideBar;
-

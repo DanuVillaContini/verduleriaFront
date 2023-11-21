@@ -16,6 +16,7 @@ function SalidasCrud() {
         { _id: 8,  producto: "Frutilla", cantidad: "50k", precio: 100.0},
         { _id: 9,  producto: "Tomate", cantidad: "50k", precio: 100.0},
         { _id: 10,  producto: "Zanahoria", cantidad: "50k", precio: 100.0},
+        
     ]
     return (
         <>
