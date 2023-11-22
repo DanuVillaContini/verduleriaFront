@@ -140,30 +140,31 @@ function PedidosCrud() {
         getListApi()
     }, [])
     return (
-        <div className={Styles['div-de-pedidos']}>
-            <Row className="d-flex flex-row flex-column m-1">
-                {/* FORM CREAR  */}
-                <Col className={Styles['col-de-acreedores']}>
-                    <h2>Pedidos Delivery</h2>
-                    <Button className={Styles['button-de-pedidos']}
-                        variant="info"
-                        onClick={() => {
-                            setshowNuevoPedidoForm((prevState) => !prevState);
-                        }}
-                    > <i className="bi bi-plus-circle-fill"></i>  Agregar nuevo pedido</Button>
-                    <form className={`bg-secondary ${Styles["nuevoItem__pedidos-form"]}`} style={{ display: showNuevoPedidoForm ? "flex" : "none", height: showNuevoPedidoForm ? "auto" : "10px" }}>
-                        <h4 className={Styles['texto-de-nuevo-pedido']}>
-                            Nuevo Pedido
-                        </h4>
-                        <div className={Styles['container-div-del-form']}>
-                            <label>N° Cliente</label>
-                            <input type="text" placeholder="Busque el numero que le corresponde al cliente" className={Styles['input-form']} value={dataCliente} onChange={(e) => {
-                                const input = e.target.value;
-                                const onlyNumbers = input.replace(/[^0-9]/g, "");
-                                setdataCliente(onlyNumbers)
-                            }} />
-                        </div>
-                        {/* <div className="col-10 m-5">
+        <>
+            <div className={Styles['div-de-pedidos']}>
+                <Row className="d-flex flex-row flex-column m-1">
+                    {/* FORM CREAR  */}
+                    <Col className={Styles['col-de-acreedores']}>
+                        <h2>Pedidos Delivery</h2>
+                        <Button className={Styles['button-de-pedidos']}
+                            variant="info"
+                            onClick={() => {
+                                setshowNuevoPedidoForm((prevState) => !prevState);
+                            }}
+                        > <i className="bi bi-plus-circle-fill"></i>  Agregar nuevo pedido</Button>
+                        <form className={`bg-secondary ${Styles["nuevoItem__pedidos-form"]}`} style={{ display: showNuevoPedidoForm ? "flex" : "none", height: showNuevoPedidoForm ? "auto" : "10px" }}>
+                            <h4 className={Styles['texto-de-nuevo-pedido']}>
+                                Nuevo Pedido
+                            </h4>
+                            <div className={Styles['container-div-del-form']}>
+                                <label>N° Cliente</label>
+                                <input type="text" placeholder="Busque el numero que le corresponde al cliente" className={Styles['input-form']} value={dataCliente} onChange={(e) => {
+                                    const input = e.target.value;
+                                    const onlyNumbers = input.replace(/[^0-9]/g, "");
+                                    setdataCliente(onlyNumbers)
+                                }} />
+                            </div>
+                            {/* <div className="col-10 m-5">
                             <Accordion defaultActiveKey="0">
                                 <Accordion.Item eventKey="0">
                                     <Accordion.Header>Articulos</Accordion.Header>
@@ -185,143 +186,143 @@ function PedidosCrud() {
                                 </Accordion.Item>
                             </Accordion>
                         </div> */}
-                        <div className={Styles['container-div-del-form']}>
-                            <label>Precio Total</label>
-                            <input type="text" placeholder="Indique precio total del pedido" className={Styles['input-form']} value={totalItem} onChange={(e) => {
-                                const input = e.target.value;
-                                const onlyNumbers = input.replace(/[^0-9]/g, "");
-                                settotalItem(onlyNumbers);
-                            }} />
-                        </div>
-                        <button className={`m-5 ${Styles["button-de-pedidos"]}`}
-                            onClick={handleSubmit}
-                            disabled={
-                                !dataCliente ||
-                                !totalItem}>Crear</button>
+                            <div className={Styles['container-div-del-form']}>
+                                <label>Precio Total</label>
+                                <input type="text" placeholder="Indique precio total del pedido" className={Styles['input-form']} value={totalItem} onChange={(e) => {
+                                    const input = e.target.value;
+                                    const onlyNumbers = input.replace(/[^0-9]/g, "");
+                                    settotalItem(onlyNumbers);
+                                }} />
+                            </div>
+                            <button className={`m-5 ${Styles["button-de-pedidos"]}`}
+                                onClick={handleSubmit}
+                                disabled={
+                                    !dataCliente ||
+                                    !totalItem}>Crear</button>
 
-                    </form>
-                </Col>
+                        </form>
+                    </Col>
 
-                {/* FORM UPDATE  */}
+                    {/* FORM UPDATE  */}
+                    <Modal
+                        show={showUpdateModal}
+                        onHide={() => setShowUpdateModal(false)}
+                    >
+                        <Modal.Header closeButton>
+                            <Modal.Title className="font-monospace ">
+                                Actualizar Pedido
+                            </Modal.Title>
+                        </Modal.Header>
+                        <Modal.Body>
+                            <form className="bg-success">
+                                <h1>
+                                    Actualizar
+                                </h1>
+                                <div className="">
+                                    <label>Cliente</label>
+                                    <input
+                                        type="text"
+                                        placeholder="n° cliente"
+                                        maxLength={25}
+                                        value={updatedataCliente} onChange={(e) => {
+                                            const onlyLettersAndSpaces = e.target.value.replace(/[^A-Za-zñÑ\s]/g, "");
+                                            setupdatedataCliente(onlyLettersAndSpaces);
+                                        }} />
+                                </div>
+                                <div className="">
+                                    <label>Total</label>
+                                    <input type="tel" placeholder="Your phonenumber" value={updatetotalItem} onChange={(e) => {
+                                        const input = e.target.value;
+                                        const onlyNumbers = input.replace(/[^0-9]/g, "");
+                                        setupdatetotalItem(onlyNumbers);
+                                    }} />
+                                </div>
+                                <button onClick={() => { setShowUpdateModal(false) }}>Cancelar</button>
+                                <Button className="bg-danger" onClick={handleUpdate}
+                                    disabled={
+                                        !updatedataCliente ||
+                                        !updatetotalItem
+                                    }>Actualizar</Button>
+                            </form>
+                        </Modal.Body>
+                    </Modal>
+
+                    {/* TABLA RENDERIZA DATOS  */}
+                    <Col >
+                        <table className={`bg-warning ${Styles["tabla-de-acreedores"]}`}>
+                            <thead>
+                                <tr>
+                                    <th className="text-center">N° Pedido</th>
+                                    <th className="text-center">Cliente</th>
+                                    <th className="text-center">Total</th>
+                                    <th className="text-center">Opciones</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {
+                                    allData?.map((item) => (
+                                        <tr key={item.id}>
+                                            <td className="text-center" data-titulo="N° Pedido">{item.id}</td>
+                                            <td className="text-center" data-titulo="Cliente">{item.clientes_id}</td>
+                                            <td className="text-center" data-titulo="Telefono">{item.total}</td>
+                                            <td data-titulo="Opciones">
+                                                <Button variant='outline-danger' className="m-1"
+                                                    onClick={() =>
+                                                        handleDeletePersonal(item.id)}>
+                                                    <i className="bi bi-trash-fill" ></i>
+                                                </Button>
+                                                <Button variant='outline-success' className="m-1"
+                                                    onClick={() => {
+                                                        setShowUpdateModal(true);
+                                                        setupdateId(item.id);
+                                                        setupdatedataCliente(item.clientes_id)
+                                                        setupdatetotalItem(item.total);
+                                                    }}>
+                                                    <i className="bi bi-pencil-square"></i>
+                                                </Button>
+                                            </td>
+                                        </tr>
+                                    ))
+                                }
+                            </tbody>
+                        </table>
+                    </Col>
+                </Row>
+                <Modal show={showDeleteModal} onHide={() => setShowDeleteModal(false)}>
+                    <Modal.Header closeButton>
+                        <Modal.Title className="font-monospace ">
+                            Confirmar eliminación
+                        </Modal.Title>
+                    </Modal.Header>
+                    <Modal.Body className="font-monospace ">
+                        ¿Estás seguro de que deseas eliminar este elemento?
+                    </Modal.Body>
+                    <Modal.Footer>
+                        <button onClick={() => setShowDeleteModal(false)}>Cancelar</button>
+                        <button
+                            onClick={handleConfirmDelete}>Si</button>
+                    </Modal.Footer>
+                </Modal>
                 <Modal
-                    show={showUpdateModal}
-                    onHide={() => setShowUpdateModal(false)}
+                    show={showSuccessModal}
+                    onHide={() => setShowSuccessModal(false)}
                 >
                     <Modal.Header closeButton>
                         <Modal.Title className="font-monospace ">
-                            Actualizar Pedido
+                            Operación exitosa
                         </Modal.Title>
                     </Modal.Header>
-                    <Modal.Body>
-                        <form className="bg-success">
-                            <h1>
-                                Actualizar
-                            </h1>
-                            <div className="">
-                                <label>Cliente</label>
-                                <input
-                                    type="text"
-                                    placeholder="n° cliente"
-                                    maxLength={25}
-                                    value={updatedataCliente} onChange={(e) => {
-                                        const onlyLettersAndSpaces = e.target.value.replace(/[^A-Za-zñÑ\s]/g, "");
-                                        setupdatedataCliente(onlyLettersAndSpaces);
-                                    }} />
-                            </div>
-                            <div className="">
-                                <label>Total</label>
-                                <input type="tel" placeholder="Your phonenumber" value={updatetotalItem} onChange={(e) => {
-                                    const input = e.target.value;
-                                    const onlyNumbers = input.replace(/[^0-9]/g, "");
-                                    setupdatetotalItem(onlyNumbers);
-                                }} />
-                            </div>
-                            <button onClick={() => { setShowUpdateModal(false) }}>Cancelar</button>
-                            <Button className="bg-danger" onClick={handleUpdate}
-                                disabled={
-                                    !updatedataCliente ||
-                                    !updatetotalItem
-                                }>Actualizar</Button>
-                        </form>
+                    <Modal.Body className="font-monospace ">
+                        La operación se ha realizado exitosamente.
                     </Modal.Body>
+                    <Modal.Footer>
+                        <button
+                            onClick={() => setShowSuccessModal(false)}
+                        >Ok</button>
+                    </Modal.Footer>
                 </Modal>
-
-                {/* TABLA RENDERIZA DATOS  */}
-                <Col >
-                    <table className={`bg-warning ${Styles["tabla-de-acreedores"]}`}>
-                        <thead>
-                            <tr>
-                                <th className="text-center">N° Pedido</th>
-                                <th className="text-center">Cliente</th>
-                                <th className="text-center">Total</th>
-                                <th className="text-center">Opciones</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {
-                                allData?.map((item) => (
-                                    <tr key={item.id}>
-                                        <td className="text-center" data-titulo="N° Pedido">{item.id}</td>
-                                        <td className="text-center" data-titulo="Cliente">{item.clientes_id}</td>
-                                        <td className="text-center" data-titulo="Telefono">{item.total}</td>
-                                        <td data-titulo="Opciones">
-                                            <Button variant='outline-danger' className="m-1"
-                                                onClick={() =>
-                                                    handleDeletePersonal(item.id)}>
-                                                <i className="bi bi-trash-fill" ></i>
-                                            </Button>
-                                            <Button variant='outline-success' className="m-1"
-                                                onClick={() => {
-                                                    setShowUpdateModal(true);
-                                                    setupdateId(item.id);
-                                                    setupdatedataCliente(item.clientes_id)
-                                                    setupdatetotalItem(item.total);
-                                                }}>
-                                                <i className="bi bi-pencil-square"></i>
-                                            </Button>
-                                        </td>
-                                    </tr>
-                                ))
-                            }
-                        </tbody>
-                    </table>
-                </Col>
-            </Row>
-            <Modal show={showDeleteModal} onHide={() => setShowDeleteModal(false)}>
-                <Modal.Header closeButton>
-                    <Modal.Title className="font-monospace ">
-                        Confirmar eliminación
-                    </Modal.Title>
-                </Modal.Header>
-                <Modal.Body className="font-monospace ">
-                    ¿Estás seguro de que deseas eliminar este elemento?
-                </Modal.Body>
-                <Modal.Footer>
-                    <button onClick={() => setShowDeleteModal(false)}>Cancelar</button>
-                    <button
-                        onClick={handleConfirmDelete}>Si</button>
-                </Modal.Footer>
-            </Modal>
-
-            <Modal
-                show={showSuccessModal}
-                onHide={() => setShowSuccessModal(false)}
-            >
-                <Modal.Header closeButton>
-                    <Modal.Title className="font-monospace ">
-                        Operación exitosa
-                    </Modal.Title>
-                </Modal.Header>
-                <Modal.Body className="font-monospace ">
-                    La operación se ha realizado exitosamente.
-                </Modal.Body>
-                <Modal.Footer>
-                    <button
-                        onClick={() => setShowSuccessModal(false)}
-                    >Ok</button>
-                </Modal.Footer>
-            </Modal>
-        </div>
+            </div>
+        </>
     )
 }
 

@@ -15,23 +15,18 @@ const SideBar = () => {
 
         <ul>
           <li>
-            <Link to="/auth/stock" className="btn btn-warning">
+            <Link to="/auth/stock_ventas" className="btn btn-warning">
               <i className="bi bi-database-check"></i> STOCK / VENTAS
             </Link>
           </li>
           <li>
-            <Link to="/auth/pedidos" className="btn btn-warning">
-              <i className="bi bi-cart4"></i> PEDIDOS / CLIENTES
+            <Link to="/auth/clientes_pedidos_acree" className="btn btn-warning">
+              <i className="bi bi-cart4"></i> PEDIDOS / CLIENTES / ACREEDORES
             </Link>
           </li>
           <li>
             <Link to="/auth/proveedores" className="btn btn-warning">
               <i className="bi bi-box-seam"></i> PROVEEDORES
-            </Link>
-          </li>
-          <li>
-            <Link to="/auth/acreedores" className="btn btn-warning">
-              <i className="bi bi-person"></i> ACREEDORES
             </Link>
           </li>
           <li>

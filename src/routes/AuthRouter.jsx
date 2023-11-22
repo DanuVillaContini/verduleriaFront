@@ -17,9 +17,9 @@ export default function AuthRouter() {
                 {/* http://localhost:5173/auth/acreedores              */}
                 <Route path="/acreedores" element={<ScreenAcreedores />} />
                 {/* http://localhost:5173/auth/stock              */}
-                <Route path="/stock" element={<ScreenStock />} />
+                <Route path="/stock_ventas" element={<ScreenStock />} />
                 {/* http://localhost:5173/auth/pedidos              */}
-                <Route path="/pedidos" element={<ScreenPedidos />} />
+                <Route path="/clientes_pedidos_acree" element={<ScreenPedidos />} />
             </Routes>
         </>
     )

@@ -1,3 +1,4 @@
+import AcreedoresCrud from "../../components/AcreedoresCrud"
 import ClientesCrud from "../../components/ClientesCrud"
 import PedidosCrud from "../../components/PedidosCrud"
 import SideBar from "../../components/SideBar"
@@ -8,7 +9,10 @@ function ScreenPedidos() {
             <div className="d-flex">
                 <SideBar />
                 <ClientesCrud />
-                <PedidosCrud />
+                <div>
+                    <PedidosCrud />
+                    <AcreedoresCrud />
+                </div>
             </div>
         </>
     )

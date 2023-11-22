@@ -14,8 +14,7 @@
     background-position: center center;
     font-family: 'Karla', sans-serif;
     background-color: rgb(26, 94, 86);
-    margin: 0;
-    padding: 0;
+    padding: 10%;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -29,13 +28,13 @@
     color: white;
 }
 .col-de-empleados-2{
-    width: 100vw;
+    width: auto;
 }
 
 .tabla-de-acreedores{
     margin-top: 5%;
     font-size: 1rem;
-    width: 70vw;
+    width: auto;
     background-color: rgb(132, 43, 210);
     /* border: 2px black solid; */
     background-color: black;    
@@ -52,7 +51,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: space-around;
-    width: 100vw;
+    width: auto;
     background-color: transparent;
     /* border: black 1px solid; */
     padding: 5%;
