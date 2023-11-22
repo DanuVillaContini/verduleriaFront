@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { Accordion, Button, Col, Modal, Row } from "react-bootstrap";
+import { Button, Col, Modal, Row } from "react-bootstrap";
 import Styles from "../styles/crudVentas.module.css"
 import { API_URI } from "../common/constantes";
 import { useEffect } from "react";
@@ -66,8 +66,8 @@ function PedidosCrud() {
 
             const response = await fetch(API_URI + "/pedidos/create", requestOptions)
             if (!response.ok) throw new Error("no se pudo crear el Empleado");
-            setupdatedataCliente("")
-            setupdatetotalItem("")
+            setdataCliente("")
+            settotalItem("")
             setshowNuevoPedidoForm(true);
             setShowSuccessModal(false);
             await getListApi();
