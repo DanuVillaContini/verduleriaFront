@@ -1,4 +1,3 @@
-import React from "react";
 import { Link } from "react-router-dom";
 import { Dropdown } from "react-bootstrap";
 import logo from "../assets/papas_hermanosss.png";
@@ -12,26 +11,31 @@ const SideBar = () => {
         <div className={Styles["logoVerdu"]}>
           <img src={logo} alt="" />
         </div>
-        
+
 
         <ul>
           <li>
-            <Link to="/stock" className="btn btn-warning">
+            <Link to="/auth/stock" className="btn btn-warning">
               <i className="bi bi-database-check"></i> STOCK
             </Link>
           </li>
           <li>
-            <Link to="/proveedores" className="btn btn-warning">
-              <i className="bi bi-box-seam"></i> PROVEEDORES
-            </Link>
-          </li>
-          <li>
-            <Link to="" className="btn btn-warning">
+            <Link to="/auth/pedidos" className="btn btn-warning">
               <i className="bi bi-cart4"></i> PEDIDOS
             </Link>
           </li>
           <li>
-            <Link to="" className="btn btn-warning">
+            <Link to="/auth/proveedores" className="btn btn-warning">
+              <i className="bi bi-box-seam"></i> PROVEEDORES
+            </Link>
+          </li>
+          <li>
+            <Link to="/auth/acreedores" className="btn btn-warning">
+              <i className="bi bi-person"></i> ACREEDORES
+            </Link>
+          </li>
+          <li>
+            <Link to="/auth/" className="btn btn-warning">
               <i className="bi bi-person"></i> EMPLEADOS
             </Link>
           </li>
