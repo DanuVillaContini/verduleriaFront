@@ -12,7 +12,7 @@ function PedidosCrud() {
     const [showDeleteModal, setShowDeleteModal] = useState(false)
     const [showSuccessModal, setShowSuccessModal] = useState(false)
 
-    const [idPedido, setidPedido] = useState([])
+    // const [idPedido, setidPedido] = useState([])
     const [dataCliente, setdataCliente] = useState([])
     const [totalItem, settotalItem] = useState([])
 
@@ -321,7 +321,7 @@ function PedidosCrud() {
                     >Ok</button>
                 </Modal.Footer>
             </Modal>
-        </div >
+        </div>
     )
 }
 

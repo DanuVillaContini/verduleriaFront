@@ -7,8 +7,8 @@ function ScreenPedidos() {
         <>
             <div className="d-flex">
                 <SideBar />
-                <PedidosCrud />
                 <ClientesCrud />
+                <PedidosCrud />
             </div>
         </>
     )

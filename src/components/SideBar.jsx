@@ -16,12 +16,12 @@ const SideBar = () => {
         <ul>
           <li>
             <Link to="/auth/stock" className="btn btn-warning">
-              <i className="bi bi-database-check"></i> STOCK
+              <i className="bi bi-database-check"></i> STOCK / VENTAS
             </Link>
           </li>
           <li>
             <Link to="/auth/pedidos" className="btn btn-warning">
-              <i className="bi bi-cart4"></i> PEDIDOS
+              <i className="bi bi-cart4"></i> PEDIDOS / CLIENTES
             </Link>
           </li>
           <li>
