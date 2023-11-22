@@ -74,7 +74,7 @@ function CrudEmpleados() {
             };
 
             const response = await fetch(API_URI + "/api/createEmpleados", requestOptions);
-            if (!response.ok) throw new Error("no se pudo crear el alumno");
+            if (!response.ok) throw new Error("no se pudo crear el Empleado");
 
             setnameItem("");
             setapellidoItem("");

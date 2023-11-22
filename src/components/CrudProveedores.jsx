@@ -1,69 +1,148 @@
 import { Button, Col, Container, Modal, Row } from "react-bootstrap";
 import Styles from "../styles/crudProveedores.module.css"
 import { useEffect, useState } from "react";
+import { API_URI } from "../common/constantes";
 
 function CrudProveedores() {
-    const mostrarItem = [
-        { _id: 1, name: "Rogelio Bermudes", apellido: "Costa", telefono: 381222333,correo:"example@example.com", dni: 11222333, productos: "frutas" },
-        { _id: 2, name: "Sandra Raco", apellido: "Costa", telefono: 381222333,correo:"example@example.com", dni: 11222333, productos: "frutas" },
-        { _id: 3, name: "Carlos Peremulter", apellido: "Costa", telefono: 381222333,correo:"example@example.com", dni: 11222333, productos: "frutas" },
-        { _id: 4, name: "Sabrina Perez", apellido: "Costa", telefono: 381222333,correo:"example@example.com", dni: 11222333, productos: "frutas" },
-        { _id: 5, name: "Octavio Ponce", apellido: "Costa", telefono: 381222333,correo:"example@example.com", dni: 11222333, productos: "verduras" },
-        { _id: 6, name: "Silvina Escupidero", apellido: "Costa", telefono: 381222333,correo:"example@example.com", dni: 11222333, productos: "verduras" },
-        { _id: 7, name: "Roberta Rojo", apellido: "Costa", telefono: 381222333,correo:"example@example.com", dni: 11222333, productos: "verduras" },
-        { _id: 8, name: "Ellen Sanchez", apellido: "Costa", telefono: 381222333,correo:"example@example.com", dni: 11222333, productos: "verduras" },
-        { _id: 9, name: "Sasha Costa", apellido: "Costa", telefono: 381222333,correo:"example@example.com", dni: 11222333, productos: "verduras" }
-    ]
-
-
-    // const [listApi, setlistApi] = useState([])
+    const [allData, setAllData] = useState([])
     const [showNuevoProveeForm, setshowNuevoProveeForm] = useState(false)
     const [showUpdateModal, setShowUpdateModal] = useState(false)
     const [showDeleteModal, setShowDeleteModal] = useState(false)
     const [showSuccessModal, setShowSuccessModal] = useState(false)
 
 
-    const [nameItem, setnameItem] = useState([])
-    const [apellidoItem, setapellidoItem] = useState([])
+    const [nameEmpresaItem, setnameEmpresaItem] = useState([])
+    const [nameEncargadoItem, setnameEncargadoItem] = useState([])
     const [telefonoItem, settelefonoItem] = useState([])
-    const [correoItem, setcorreoItem] = useState([])
-    const [dniItem, setdniItem] = useState([])
-    const [productItem, setproductItem] = useState([])
+    const [direccionItem, setdireccionItem] = useState([])
+    // const [productItem, setproductItem] = useState([])
 
     const [updateId, setupdateId] = useState([])
-    const [updateName, setupdateName] = useState([])
-    const [updateApellido, setupdateApellido] = useState([])
+    const [updatenameEmpresa, setupdatenameEmpresa] = useState([])
+    const [updatenameEncargado, setupdatenameEncargado] = useState([])
     const [updateTelefono, setupdateTelefono] = useState([])
-    const [updateCorreo, setupdateCorreo] = useState([])
-    const [updateDni, setupdateDni] = useState([])
-    const [updateproductItem, setupdateproductItem] = useState([])
+    const [updateDirecc, setupdateDirecc] = useState([])
+    // const [updateproductItem, setupdateproductItem] = useState([])
 
     const [deleteId, setDeleteId] = useState("");
 
     const getListApi = async () => {
-        //funcion fetch para traer todo lo del backend
+        try {
+            console.log("Fetching data from API...");
+
+            let requestOptions = {
+                method: 'GET',
+                redirect: 'follow'
+            };
+
+            const response = await fetch(API_URI + "/proveedores/get", requestOptions)
+            if (!response.ok) {
+                console.error("Error fetching data:", response.statusText);
+                return;
+            }
+
+            const result = await response.json();
+
+            if (Array.isArray(result)) {
+                console.log("Data received:", result);
+                setAllData(result);
+            } else {
+                console.error("Error: Unexpected response format - expected an array", result);
+            }
+        } catch (error) {
+            console.error("Error fetching data:", error);
+        }
     }
     const nuevoItem = async () => {
-        //funcion fetch para crear nuevo
+        try {
+            var myHeaders = new Headers();
+            myHeaders.append("Content-Type", "application/json");
+
+            var raw = JSON.stringify({
+                name_empresa: nameEmpresaItem,
+                name_encargado: nameEncargadoItem,
+                telefono: telefonoItem,
+                direccion: direccionItem
+            });
+
+            var requestOptions = {
+                method: 'POST',
+                headers: myHeaders,
+                body: raw,
+                redirect: 'follow'
+            };
+
+            const response = await fetch(API_URI + "/proveedores/create", requestOptions)
+            if (!response.ok) throw new Error("no se pudo crear el Proveedor");
+            setnameEmpresaItem("");
+            setnameEncargadoItem("");
+            settelefonoItem("");
+            setdireccionItem("");
+            setshowNuevoProveeForm(true);
+            setShowSuccessModal(false);
+            await getListApi();
+        } catch (error) {
+            console.error(error);
+        }
     }
     const updateItem = async () => {
-        //funcion fetch para actualizar nuevo
+        try {
+            var myHeaders = new Headers();
+            myHeaders.append("Content-Type", "application/json");
+
+            var raw = JSON.stringify({
+                name_empresa: updatenameEmpresa,
+                name_encargado: updatenameEncargado,
+                telefono: updateTelefono,
+                direccion: updateDirecc
+            });
+
+            var requestOptions = {
+                method: 'PUT',
+                headers: myHeaders,
+                body: raw,
+                redirect: 'follow'
+            };
+
+            const response = await fetch(
+                API_URI + "/proveedores/update/" + updateId, requestOptions)
+            if (!response.ok) throw new Error("No se pudo actualizar el empleado");
+
+            setShowSuccessModal(true);
+            setShowUpdateModal(false);
+            await getListApi();
+        } catch (error) {
+            console.error(error);
+        }
     }
-    const deleteItem = async (_id) => {
-        //funcion fetch para eliminar nuevo
+    const deleteItem = async () => {
+        try {
+            var requestOptions = {
+                method: 'DELETE',
+                redirect: 'follow'
+            };
+
+            const response = await fetch(API_URI + "/proveedores/delete/" + deleteId, requestOptions)
+            if (!response.ok) throw new Error("no se pudo eliminar el empleado")
+            setDeleteId("");
+            setShowSuccessModal(true);
+            setShowDeleteModal(false);
+            await getListApi()
+        } catch (error) {
+            console.error(error);
+        }
 
     }
     const handleSubmit = async () => {
         await nuevoItem()
     }
-    const handleUpdate = async (_id) => {
-        await updateItem(_id)
+    const handleUpdate = async () => {
+        await updateItem()
     }
-    const handleDeletePersonal = async (_id) => {
-        setDeleteId(_id);
+    const handleDeletePersonal = async (id) => {
+        setDeleteId(id);
         setShowDeleteModal(true);
     }
-
     const handleConfirmDelete = async () => {
         await deleteItem(deleteId);
     }
@@ -78,32 +157,32 @@ function CrudProveedores() {
                     <Col className={Styles['col-de-proveedores']}>
                         <h2>Proveedores</h2>
                         <button className={Styles['button-de-proveedores']}
-                        variant="info"
-                        onClick={() => {
-                            setshowNuevoProveeForm((prevState) => !prevState);
-                    }}
-                    > <i className="bi bi-plus-circle-fill"></i>  Agregar nuevo proveedor</button>
+                            // variant="info"
+                            onClick={() => {
+                                setshowNuevoProveeForm((prevState) => !prevState);
+                            }}
+                        > <i className="bi bi-plus-circle-fill"></i>  Agregar nuevo proveedor</button>
                         <form className={`bg-secondary ${Styles["nuevoItem__provee-form"]}`} style={{ display: showNuevoProveeForm ? "flex" : "none", height: showNuevoProveeForm ? "auto" : "10px" }}>
                             <h4>
                                 Agregar Nuevo
                             </h4>
                             <div className={Styles['container-div-del-form']}>
-                                <label>Nombre</label>
+                                <label>Nombre de la Empresa</label>
                                 <input
                                     type="text"
-                                    placeholder="Your name"
-                                    value={nameItem}
+                                    placeholder="Nombre de la empresa"
+                                    value={nameEmpresaItem}
                                     className={Styles['input-form']}
                                     onChange={(e) => {
                                         const onlyLettersAndSpaces = e.target.value.replace(/[^A-Za-zñÑ\s]/g, "");
-                                        setnameItem(onlyLettersAndSpaces);
+                                        setnameEmpresaItem(onlyLettersAndSpaces);
                                     }} />
                             </div>
                             <div className={Styles['container-div-del-form']}>
-                                <label>Apellido</label>
-                                <input type="text" placeholder="Your Apellido" value={apellidoItem} className={Styles['input-form']} onChange={(e) => {
+                                <label>Nombre del Encargado</label>
+                                <input type="text" placeholder="Nombre del encargado" value={nameEncargadoItem} className={Styles['input-form']} onChange={(e) => {
                                     const onlyLettersAndSpaces = e.target.value.replace(/[^A-Za-zñÑ\s]/g, "");
-                                    setapellidoItem(onlyLettersAndSpaces);
+                                    setnameEncargadoItem(onlyLettersAndSpaces);
 
                                 }} />
                             </div>
@@ -116,33 +195,15 @@ function CrudProveedores() {
                                 }} />
                             </div>
                             <div className={Styles['container-div-del-form']}>
-                                <label>Correo</label>
-                                <input type="email" placeholder="correo@example.com" value={correoItem} className={Styles['input-form']} onChange={(e) => setcorreoItem(e.target.value)} />
-                            </div>
-                            <div className={Styles['container-div-del-form']}>
-                                <label>Dni</label>
-                                <input type="tel" placeholder="Your DNI" value={dniItem} className={Styles['input-form']} onChange={(e) => {
-                                    const input = e.target.value
-                                    const onlyNumbers = input.replace(/[^0-9]/g, "");
-                                    setdniItem(onlyNumbers);
-                                }} />
-                            </div>
-                            <div className={Styles['container-div-del-form']}>
-                                <label>Productos que provee</label>
-                                <input type="text" placeholder="Productos" value={apellidoItem} className={Styles['input-form']} onChange={(e) => {
-                                    const onlyLettersAndSpaces = e.target.value.replace(/[^A-Za-zñÑ\s]/g, "");
-                                    setproductItem(onlyLettersAndSpaces);
-
-                                }} />
+                                <label>Direccion</label>
+                                <input type="email" placeholder="Direccion" value={direccionItem} className={Styles['input-form']} onChange={(e) => setdireccionItem(e.target.value)} />
                             </div>
                             <button className={Styles['button-de-proveedores']} onClick={handleSubmit}
                                 disabled={
-                                    !nameItem ||
-                                    !apellidoItem ||
+                                    !nameEmpresaItem ||
+                                    !nameEncargadoItem ||
                                     !telefonoItem ||
-                                    !correoItem ||
-                                    !dniItem ||
-                                    !productItem
+                                    !direccionItem
                                 }>Agregar</button>
                         </form>
                     </Col>
@@ -169,16 +230,16 @@ function CrudProveedores() {
                                     type="text"
                                     placeholder="Your name"
                                     maxLength={25}
-                                    value={updateName} onChange={(e) => {
+                                    value={updatenameEmpresa} onChange={(e) => {
                                         const onlyLettersAndSpaces = e.target.value.replace(/[^A-Za-zñÑ\s]/g, "");
-                                        setupdateName(onlyLettersAndSpaces);
+                                        setupdatenameEmpresa(onlyLettersAndSpaces);
                                     }} />
                             </div>
                             <div className="">
                                 <label>Apellido</label>
-                                <input type="text" placeholder="Your Apellido" value={updateApellido} onChange={(e) => {
+                                <input type="text" placeholder="Your Apellido" value={updatenameEncargado} onChange={(e) => {
                                     const onlyLettersAndSpaces = e.target.value.replace(/[^A-Za-zñÑ\s]/g, "");
-                                    setupdateApellido(onlyLettersAndSpaces);
+                                    setupdatenameEncargado(onlyLettersAndSpaces);
                                 }} />
                             </div>
                             <div className="">
@@ -191,78 +252,65 @@ function CrudProveedores() {
                             </div>
                             <div className="">
                                 <label>Correo</label>
-                                <input type="email" placeholder="correo@example.com" value={updateCorreo} onChange={(e) => setupdateCorreo(e.target.value)} />
+                                <input type="email" placeholder="correo@example.com" value={updateDirecc} onChange={(e) => setupdateDirecc(e.target.value)} />
                             </div>
-                            <div className="">
-                                <label>Dni</label>
-                                <input type="tel" placeholder="Your DNI" value={updateDni} onChange={(e) => {
-                                    const input = e.target.value
-                                    const onlyNumbers = input.replace(/[^0-9]/g, "");
-                                    setupdateDni(onlyNumbers);
-                                }} />
-                            </div>
-                            <div className="">
+                            {/* <div className="">
                                 <label>Productos</label>
                                 <input type="text" placeholder="Productos que provee" value={updateApellido} onChange={(e) => {
                                     const onlyLettersAndSpaces = e.target.value.replace(/[^A-Za-zñÑ\s]/g, "");
                                     setupdateproductItem(onlyLettersAndSpaces);
                                 }} />
-                            </div>
+                            </div> */}
                             <button onClick={() => { setShowUpdateModal(false) }}>Cancelar</button>
                             <button className="bg-danger" onClick={handleUpdate}
                                 disabled={
-                                    !updateName ||
-                                    !updateApellido ||
+                                    !updatenameEmpresa ||
+                                    !updatenameEncargado ||
                                     !updateTelefono ||
-                                    !updateCorreo ||
-                                    !updateDni ||
-                                    !updateproductItem
+                                    !updateDirecc
+                                    // !updateproductItem
                                 }>Actualizar</button>
                         </form>
                     </Modal.Body>
                 </Modal>
 
                 {/* TABLA QUE RENDERIZA LO QUE TRAE DEL BACK  */}
-                {/* <div className={Styles["tabla-de-proveedores"]}> */}
+
                 <div className={`bg-warning ${Styles["contenedor-de-proveedores"]}`}>
-                <table className={`bg-warning ${Styles["tabla-de-proveedores"]}`}>
+                    <table className={`bg-warning ${Styles["tabla-de-proveedores"]}`}>
                         <thead>
                             <tr>
                                 <th className="text-center">Nombre</th>
                                 <th className="text-center">Apellido</th>
                                 <th className="text-center">Telefono</th>
                                 <th className="text-center">Correo</th>
-                                <th className="text-center">N° DNI</th>
-                                <th className="text-center">Productos</th>
+                                {/* <th className="text-center">Productos</th> */}
                                 <th className="text-center">Opciones</th>
                             </tr>
                         </thead>
                         <tbody>
                             {
-                                mostrarItem.map((item) => (
-                                    <tr key={item._id}>
-                                        <td className="text-center" data-titulo="Nombre">{item.name}</td>
-                                        <td className="text-center" data-titulo="Apellido">{item.apellido}</td>
+                                allData?.map((item) => (
+                                    <tr key={item.id}>
+                                        <td className="text-center" data-titulo="Nombre">{item.name_empresa}</td>
+                                        <td className="text-center" data-titulo="Apellido">{item.name_encargado}</td>
                                         <td className="text-center" data-titulo="Telefono">{item.telefono}</td>
-                                        <td className="text-center" data-titulo="correo">{item.correo}</td>
-                                        <td className="text-center" data-titulo="N° DNI">{item.dni}</td>
-                                        <td className="text-center" data-titulo="Productos">{item.productos}</td>
+                                        <td className="text-center" data-titulo="correo">{item.direccion}</td>
+                                        {/* <td className="text-center" data-titulo="Productos">{item.productos}</td> */}
                                         <td className="text-center" data-titulo="Opciones">
                                             <Button variant='outline-danger' className="m-1" onClick={() => {
-                                                handleDeletePersonal(item._id);
+                                                handleDeletePersonal(item.id);
                                             }}>
                                                 <i className="bi bi-trash-fill" ></i>
                                             </Button>
                                             <Button variant='outline-success' className="m-1" onClick={() => {
-                                                    setShowUpdateModal(true);
-                                                    setupdateId(item._id)
-                                                    setupdateName(item.name)
-                                                    setupdateApellido(item.apellido)
-                                                    setupdateTelefono(item.telefono)
-                                                    setupdateCorreo(item.correo)
-                                                    setupdateDni(item.dni)
-                                                    setupdateproductItem(item.productos)
-                                                }}>
+                                                setShowUpdateModal(true);
+                                                setupdateId(item.id)
+                                                setupdatenameEmpresa(item.name_empresa)
+                                                setupdatenameEncargado(item.name_encargado)
+                                                setupdateTelefono(item.telefono)
+                                                setupdateDirecc(item.direccion)
+                                            }}>
                                                 <i className="bi bi-pencil-square"></i>
                                             </Button>
                                         </td>
@@ -315,4 +363,4 @@ function CrudProveedores() {
     )
 }
 
-export default CrudProveedores
+export default CrudProveedores;
