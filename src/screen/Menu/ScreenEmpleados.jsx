@@ -1,10 +1,15 @@
-
+import CrudEmpleados from "../../components/CrudEmpleados"
+import SideBar from "../../components/SideBar"
 
 function ScreenEmpleados() {
     return (
-        <div>
-            <h1>Empleados</h1>
-        </div>
+        <>
+            <div className="d-flex">
+                <SideBar/>
+                <CrudEmpleados />
+            </div>
+            
+        </>
     )
 }
 

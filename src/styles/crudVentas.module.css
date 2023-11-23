@@ -1,0 +1,445 @@
+@import url('https://fonts.googleapis.com/css2?family=Karla:wght@200&display=swap');
+
+
+.nuevoItem__pedidos-form {
+    height: 0px;
+    overflow: hidden;
+    transition: all ease .3s;
+}
+
+.nuevoItem__acree-form {
+    height: 0px;
+    overflow: hidden;
+    transition: all ease .3s;
+}
+
+.texto-de-nuevo-pedido {
+    color: white;
+}
+
+.div-de-pedidos h2 {
+    text-align: center;
+    font-weight: 600;
+    color: white;
+}
+
+.div-de-pedidos form {
+    margin-top: 20%;
+    ;
+}
+
+.div-de-pedidos {
+    font-family: 'Karla', sans-serif;
+    margin: 0;
+    display: flex;
+    background-size: cover;
+    background-position: center center;
+    font-family: 'Karla', sans-serif;
+    background-color: rgb(26, 94, 86);
+    margin: 0;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-size: cover;
+    background-position: center center;
+    width: 40vw;
+    position: relative;
+    z-index: 3;
+}
+
+
+
+/*Acreedores-------------------------------------------------------------------*/
+
+
+
+.div-de-acreedores {
+    font-family: 'Karla', sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    background-size: cover;
+    background-position: center center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 40vw;
+    position: relative;
+    z-index: 3;
+    padding-bottom: 5%;
+    background-color: rgb(26, 94, 86);
+
+}
+
+.col-de-acreedores-2 {
+    width: auto;
+}
+
+.tabla-de-acreedores {
+    margin-top: 5%;
+    font-size: 1rem;
+    width: 35vw;
+    background-color: rgb(132, 43, 210);
+    /* border: 2px black solid; */
+    background-color: black;
+    background-position: center center;
+    color: white;
+    border-radius: 20px;
+}
+
+.button-de-pedidos i {
+    margin-right: 15px;
+
+}
+
+.button-de-pedidos {
+    padding: 1em 2em;
+    border: none;
+    border-radius: 5px;
+    font-weight: bold;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    color: #2c9caf;
+    transition: all 1000ms;
+    font-size: 10px;
+    position: relative;
+    overflow: hidden;
+    outline: 2px solid #2c9caf;
+}
+
+.button-de-pedidos:hover {
+    color: #ffffff;
+    transform: scale(1.1);
+    outline: 2px solid #70bdca;
+    box-shadow: 4px 5px 17px -4px #268391;
+}
+
+.button-de-pedidos::before {
+    content: "";
+    position: absolute;
+    left: -50px;
+    top: 0;
+    width: 0;
+    height: 100%;
+    background-color: #2c9caf;
+    transform: skewX(45deg);
+    z-index: -1;
+    transition: width 1000ms;
+}
+
+.button-de-pedidos:hover::before {
+    width: 250%;
+}
+
+
+.button-de-pedidos i {
+    margin-right: 15px;
+}
+
+.input-form .titulo-de-acreedores {
+    text-align: center;
+    font-weight: 600;
+    color: white;
+    width: 100vw;
+}
+
+.button-de-acreedores {
+    background-color: orange;
+
+}
+
+
+.tabla-de-acreedores thead {
+    font-weight: bolder;
+    font-size: 1.2rem;
+}
+
+
+/*------------------------Contenedor de 'Acreedores' y 'Pedidos'--------------------------------*/
+
+.col-de-acreedores {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    width: auto;
+    background-color: transparent;
+    /* border: black 1px solid; */
+    padding: 5%;
+}
+
+
+.col-de-acreedores form {
+    width: 40vw;
+    padding: 5%;
+    display: flex;
+    color: white;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(to right, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url(../assets/verduleria2.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+    border: 1px solid white;
+    border-radius: 10px;
+    margin: 5% 0;
+}
+
+
+.col-de-acreedores form h4 {
+    text-align: center;
+}
+
+.col-de-acreedores h2 {
+    text-align: center;
+    font-weight: 600;
+    color: white;
+}
+
+.col-de-acreedores form input {
+    width: 35vw;
+
+}
+
+.input-form {
+    background-color: rgb(20, 17, 17);
+    color: #2c9caf;
+    border: none;
+    border-radius: 5px;
+    height: 40px;
+}
+
+.boton-crear-acreedor {
+    width: 20%;
+    margin-top: 5%;
+}
+
+
+.container-div-del-form {
+    display: flex;
+    flex-direction: column;
+}
+
+.col-de-acreedores-2 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 5%;
+}
+
+.titulo-pedidos-delivery {
+    margin: 5%;
+}
+
+.padding-extra {
+    padding: 5%;
+}
+
+.titulo-de-acreedores {
+    color: white;
+}
+
+.nuevoItem__pedidos-form {
+    height: 0px;
+    overflow: hidden;
+    transition: all ease .3s;
+}
+
+.nuevoItem__provee-form {
+    height: 0px;
+    overflow: hidden;
+    transition: all ease .3s;
+}
+
+.texto-de-nuevo-pedido {
+    color: white;
+}
+
+.div-de-proveedores h2 {
+    text-align: center;
+    font-weight: 600;
+    color: white;
+}
+
+.div-de-proveedores form {
+    margin-top: 20%;
+    ;
+}
+
+.div-de-proveedores {
+    font-family: 'Karla', sans-serif;
+    margin: 0;
+    display: flex;
+    background-size: cover;
+    background-position: center center;
+    font-family: 'Karla', sans-serif;
+    background-color: rgb(26, 94, 86);
+    margin: 0;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-size: cover;
+    background-position: center center;
+    width: auto;
+    position: relative;
+    z-index: 3;
+}
+
+/*Crud Clientes con nombre Proveedores-------------------------------------------------------------------*/
+
+.contenedor-de-tabla-proveedores {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: auto;
+    padding: 5%;
+}
+
+.tabla-de-proveedores {
+    margin-top: 5%;
+    font-size: 1rem;
+    width: auto;
+    margin-right: 10px;
+    background-color: rgb(132, 43, 210);
+    /* border: 2px black solid; */
+    background-color: black;
+    background-position: center center;
+    color: white;
+    border-radius: 20px;
+
+}
+
+.button-de-proveedores i {
+    margin-right: 15px;
+
+}
+
+.button-de-proveedores {
+    padding: 1em 2em;
+    border: none;
+    border-radius: 5px;
+    font-weight: bold;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    margin-top: 5%;
+    color: #2c9caf;
+    transition: all 1000ms;
+    font-size: 10px;
+    position: relative;
+    overflow: hidden;
+    outline: 2px solid #2c9caf;
+}
+
+.button-de-proveedores:hover {
+    color: #ffffff;
+    transform: scale(1.1);
+    outline: 2px solid #70bdca;
+    box-shadow: 4px 5px 17px -4px #268391;
+}
+
+.button-de-proveedores::before {
+    content: "";
+    position: absolute;
+    left: -50px;
+    top: 0;
+    width: 0;
+    height: 100%;
+    background-color: #2c9caf;
+    transform: skewX(45deg);
+    z-index: -1;
+    transition: width 1000ms;
+}
+
+.button-de-proveedores:hover::before {
+    width: 250%;
+}
+
+
+.button-de-proveedores i {
+    margin-right: 15px;
+}
+
+.col-de-proveedores {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    width: auto;
+    background-color: transparent;
+    /* border: black 1px solid; */
+    padding: 5%;
+}
+
+.col-de-proveedores form {
+    width: 30vw;
+    padding: 5%;
+    display: flex;
+    color: white;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(to right, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url(../assets/verduleria2.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+    border: 1px solid white;
+    border-radius: 20px;
+    margin: 5% 0;
+}
+
+
+.col-de-proveedores form h4 {
+    text-align: center;
+}
+
+.col-de-proveedores h2 {
+    text-align: center;
+    font-weight: 600;
+    color: white;
+}
+
+.col-de-proveedores form input {
+    width: auto;
+
+}
+
+.input-form {
+    background-color: rgb(20, 17, 17);
+    color: #2c9caf;
+    border: none;
+    border-radius: 5px;
+    height: 40px;
+    padding-left: 4%;
+}
+
+.boton-crear-proveedor {
+    width: 20%;
+    margin-top: 5%;
+}
+
+
+.container-div-del-form {
+    display: flex;
+    flex-direction: column;
+}
+
+.col-de-proveedores-2 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 5%;
+}
+
+.padding-extra {
+    padding: 5%;
+}
+
+.titulo-de-proveedores {
+    color: white;
+}

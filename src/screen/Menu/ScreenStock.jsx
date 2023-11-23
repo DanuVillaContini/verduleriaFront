@@ -1,10 +1,16 @@
+import SalidasCrud from "../../components/SalidasCrud"
+import SideBar from "../../components/SideBar"
+import StockCrud from "../../components/StockCrud"
 
 function ScreenStock() {
     return (
-        <div>
-            <h1>Sctock</h1>
-
-        </div>
+        <>
+            <div className="d-flex ">
+                <SideBar />
+                <StockCrud />
+                <SalidasCrud />
+            </div>
+        </>
     )
 }
 

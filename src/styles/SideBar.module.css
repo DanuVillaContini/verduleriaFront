@@ -1,0 +1,87 @@
+*{
+    margin: 0;
+    padding: 0;
+    
+    
+}
+.flex{
+    display: flex;
+    
+}
+.navbar{
+    padding:1rem 2rem;
+    border-bottom: 1px solid grey;
+    
+}
+
+.sidebar {
+    width: 14rem;
+    height: auto;
+    border-right: 1px solid grey;
+    background-image: url(../assets/e80dee2c45ba0852b638ff78f23cf43f.png);
+    background-repeat: no-repeat;
+    background-size: cover; 
+    background-position: center; 
+}
+
+.sidebar ul{
+    list-style: none;
+    padding: 1rem 2rem;
+    
+}
+.sidebar ul li{
+    margin-bottom: 4rem;
+    
+}
+.sidebar ul li a{
+    text-decoration: none;
+}
+
+.sidebar img{
+    width: 120px;
+    height: 120px;
+    
+    
+}
+.sidebar .logoVerdu{
+    
+    text-align: center;
+}
+.dropdown{
+    display: none;
+    
+}
+
+
+  
+
+@media screen and (max-width: 550px){
+    .dropdown{
+        display: block;
+    }
+
+    .sidebar {
+        display: none;
+    }
+
+    
+}
+/* Estilo para el menú desplegable */
+.dropdown-box {
+    background-color: #3D5653 !important; /* Cambia "tu-color-preferido" al color que desees */
+    border: 2px red solid; /* Elimina el borde */
+  }
+  
+  /* Estilo para los elementos del menú desplegable */
+  .dropdown-box a {
+    color: white; /* Cambia "tu-color-de-texto" al color que desees */
+    text-decoration: none; /* Elimina el subrayado */
+    padding: 8px 16px; /* Ajusta el relleno según tus preferencias */
+    display: block; /* Hace que los elementos ocupen el ancho completo del contenedor */
+  }
+  
+  /* Estilo para los elementos del menú desplegable al pasar el ratón por encima */
+  .dropdown-box a:hover {
+    background-color: #4D5F53; /* Cambia "tu-color-de-fondo-hover" al color que desees */
+    color: white /* Cambia "tu-color-de-texto-hover" al color que desees */
+  }

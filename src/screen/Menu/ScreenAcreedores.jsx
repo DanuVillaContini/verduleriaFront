@@ -1,16 +1,15 @@
-import CrudProveedores from "../../components/CrudProveedores"
+import AcreedoresCrud from "../../components/AcreedoresCrud"
 import SideBar from "../../components/SideBar"
-
-function ScreenProvee() {
+function ScreenAcreedores() {
     return (
         <>
+
             <div className="d-flex">
                 <SideBar />
-                <CrudProveedores />
+                <AcreedoresCrud />
             </div>
-
         </>
     )
 }
 
-export default ScreenProvee
+export default ScreenAcreedores

@@ -1,0 +1,26 @@
+/* body{
+    margin: 0;
+    padding: 0;
+    background-color: rgb(130, 128, 110);
+    overflow-x: hidden;
+    width: 100vw;
+    height: 600vh;
+    display: flex;
+    justify-content: center;
+}
+
+.contenedor-de-acreedores-pedidos{
+    margin-top: 20%;
+    background-color: green;
+    width: 400vw;
+    overflow-x: hidden;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    width: 100vw;;
+    /* position: absolute;
+    z-index: 4;
+    display: flex;
+    flex-direction: column; 
+} */

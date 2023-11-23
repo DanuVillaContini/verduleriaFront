@@ -1,12 +1,12 @@
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+
 import AuthRouter from "./routes/AuthRouter";
 import Screenlogin from "./screen/Screenlogin";
-
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 function App() {
 
-
   return (
+    
     <>
       <BrowserRouter>
         <Routes>
@@ -15,6 +15,8 @@ function App() {
         </Routes>
       </BrowserRouter>
     </>
+
+
   )
 }
 
