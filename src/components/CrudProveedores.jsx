@@ -220,12 +220,12 @@ function CrudProveedores() {
                         </Modal.Title>
                     </Modal.Header>
                     <Modal.Body>
-                        <form className="bg-success">
+                        <form className="">
                             <h1>
                                 Actualizar
                             </h1>
-                            <div className="">
-                                <label>Nombre</label>
+                            <div className="m-1">
+                                <label className="mx-2">Nombre</label>
                                 <input
                                     type="text"
                                     placeholder="Your name"
@@ -235,23 +235,23 @@ function CrudProveedores() {
                                         setupdatenameEmpresa(onlyLettersAndSpaces);
                                     }} />
                             </div>
-                            <div className="">
-                                <label>Apellido</label>
+                            <div className="m-1">
+                                <label className="mx-2">Apellido</label>
                                 <input type="text" placeholder="Your Apellido" value={updatenameEncargado} onChange={(e) => {
                                     const onlyLettersAndSpaces = e.target.value.replace(/[^A-Za-zñÑ\s]/g, "");
                                     setupdatenameEncargado(onlyLettersAndSpaces);
                                 }} />
                             </div>
-                            <div className="">
-                                <label>Phonenumber</label>
+                            <div className="m-1">
+                                <label className="mx-2">Phonenumber</label>
                                 <input type="tel" placeholder="Your phonenumber" value={updateTelefono} onChange={(e) => {
                                     const input = e.target.value;
                                     const onlyNumbers = input.replace(/[^0-9]/g, "");
                                     setupdateTelefono(onlyNumbers);
                                 }} />
                             </div>
-                            <div className="">
-                                <label>Correo</label>
+                            <div className="m-1">
+                                <label className="mx-2">Correo</label>
                                 <input type="email" placeholder="correo@example.com" value={updateDirecc} onChange={(e) => setupdateDirecc(e.target.value)} />
                             </div>
                             {/* <div className="">
@@ -261,8 +261,8 @@ function CrudProveedores() {
                                     setupdateproductItem(onlyLettersAndSpaces);
                                 }} />
                             </div> */}
-                            <button onClick={() => { setShowUpdateModal(false) }}>Cancelar</button>
-                            <button className="bg-danger" onClick={handleUpdate}
+                            <button className={`my-1 mx-4 ${Styles["button-de-proveedores"]}`} onClick={() => { setShowUpdateModal(false) }}>Cancelar</button>
+                            <button className={`my-1 mx-4 ${Styles["button-de-proveedores"]}`} onClick={handleUpdate}
                                 disabled={
                                     !updatenameEmpresa ||
                                     !updatenameEncargado ||

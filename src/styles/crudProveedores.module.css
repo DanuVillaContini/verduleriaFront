@@ -1,3 +1,8 @@
+body{
+overflow-x: hidden;
+}
+
+
 .nuevoItem__pedidos-form{
     height: 0px;
     overflow: hidden;
@@ -63,7 +68,6 @@
     font-size: 1rem;
     width: 70vw;
     background-color: rgb(132, 43, 210);
-    /* border: 2px black solid; */
     background-color: black;    
     background-position: center center;
     color: white;
@@ -132,7 +136,7 @@ margin-right: 15px;
 }
 
 .col-de-proveedores form{
-    width: 69vw;
+    width: auto;
     padding: 5%;
     display: flex;
     color: white;

@@ -204,12 +204,12 @@ function ClientesCrud() {
                         </Modal.Title>
                     </Modal.Header>
                     <Modal.Body>
-                        <form className="bg-success">
+                        <form className="">
                             <h1>
                                 Actualizar
                             </h1>
-                            <div className="">
-                                <label>Nombre</label>
+                            <div className="m-1">
+                                <label className="mx-2">Nombre</label>
                                 <input
                                     type="text"
                                     placeholder="Your name"
@@ -219,19 +219,19 @@ function ClientesCrud() {
                                         setupdatnameItem(onlyLettersAndSpaces);
                                     }} />
                             </div>
-                            <div className="">
-                                <label>Apellido</label>
+                            <div className="m-1">
+                                <label className="mx-2">Apellido</label>
                                 <input type="text" placeholder="Your Apellido" value={updatecelularItem} onChange={(e) => {
                                     const onlyLettersAndSpaces = e.target.value.replace(/[^A-Za-zñÑ\s]/g, "");
                                     setupdatecelularItem(onlyLettersAndSpaces);
                                 }} />
                             </div>
-                            <div className="">
-                                <label>Direccion</label>
+                            <div className="m-1">
+                                <label className="mx-2">Direccion</label>
                                 <input type="text" placeholder="Direccion" value={updateDirecc} onChange={(e) => setupdateDirecc(e.target.value)} />
                             </div>
-                            <button onClick={() => { setShowUpdateModal(false) }}>Cancelar</button>
-                            <button className="bg-danger" onClick={handleUpdate}
+                            <button className={`my-1 mx-4 ${Styles["button-de-proveedores"]}`} onClick={() => { setShowUpdateModal(false) }}>Cancelar</button>
+                            <button className={`my-1 mx-4 ${Styles["button-de-proveedores"]}`} onClick={handleUpdate}
                                 disabled={
                                     !updatnameItem ||
                                     !updatecelularItem ||
