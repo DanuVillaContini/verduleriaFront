@@ -24,7 +24,6 @@ function CrudEmpleados() {
     const [updateApellido, setupdateApellido] = useState([])
     const [updateTelefono, setupdateTelefono] = useState([])
     const [updateCorreo, setupdateCorreo] = useState([])
-    const [updateDni, setupdateDni] = useState([])
 
     const [deleteId, setDeleteId] = useState("");
 
@@ -209,14 +208,14 @@ function CrudEmpleados() {
                                     <label>Correo</label>
                                     <input type="email" placeholder="correo@example.com" value={correoItem} className={Styles['input-form']} onChange={(e) => setcorreoItem(e.target.value)} />
                                 </div>
-                                <Button className={`m-5 ${Styles["button-de-empleados"]}`}
+                                <button className={`m-5 ${Styles["button-de-empleados"]}`}
                                     onClick={handleSubmit}
                                     disabled={
                                         !nameItem ||
                                         !apellidoItem ||
                                         !telefonoItem ||
                                         !correoItem
-                                    }>Agregar</Button>
+                                    }>Agregar</button>
                             </form>
                         </Col>
                     </Row>
@@ -231,12 +230,12 @@ function CrudEmpleados() {
                             </Modal.Title>
                         </Modal.Header>
                         <Modal.Body>
-                            <form className="bg-success">
+                            <form>
                                 <h1>
                                     Actualizar
                                 </h1>
-                                <div className="">
-                                    <label>Nombre</label>
+                                <div className="m-1">
+                                    <label className="mx-2">Nombre</label>
                                     <input
                                         type="text"
                                         placeholder="Your name"
@@ -246,43 +245,34 @@ function CrudEmpleados() {
                                             setupdateName(onlyLettersAndSpaces);
                                         }} />
                                 </div>
-                                <div className="">
-                                    <label>Apellido</label>
+                                <div className="m-1">
+                                    <label className="mx-2">Apellido</label>
                                     <input type="text" placeholder="Your Apellido" value={updateApellido} onChange={(e) => {
                                         const onlyLettersAndSpaces = e.target.value.replace(/[^A-Za-zñÑ\s]/g, "");
                                         setupdateApellido(onlyLettersAndSpaces);
 
                                     }} />
                                 </div>
-                                <div className="">
-                                    <label>Phonenumber</label>
+                                <div className="m-1">
+                                    <label className="mx-2">Phonenumber</label>
                                     <input type="tel" placeholder="Your phonenumber" value={updateTelefono} onChange={(e) => {
                                         const input = e.target.value;
                                         const onlyNumbers = input.replace(/[^0-9]/g, "");
                                         setupdateTelefono(onlyNumbers);
                                     }} />
                                 </div>
-                                <div className="">
-                                    <label>Correo</label>
+                                <div className="m-1">
+                                    <label className="mx-2">Correo</label>
                                     <input type="email" placeholder="correo@example.com" value={updateCorreo} onChange={(e) => setupdateCorreo(e.target.value)} />
                                 </div>
-                                <div className="">
-                                    <label>Dni</label>
-                                    <input type="tel" placeholder="Your DNI" value={updateDni} onChange={(e) => {
-                                        const input = e.target.value
-                                        const onlyNumbers = input.replace(/[^0-9]/g, "");
-                                        setupdateDni(onlyNumbers);
-                                    }} />
-                                </div>
-                                <button onClick={() => { setShowUpdateModal(false) }}>Cancelar</button>
-                                <Button className="bg-danger" onClick={handleUpdate}
+                                <button className={`my-1 mx-4 ${Styles["button-de-empleados"]}`} onClick={() => { setShowUpdateModal(false) }}>Cancelar</button>
+                                <button className={`my-1 mx-4 ${Styles["button-de-empleados"]}`} onClick={handleUpdate}
                                     disabled={
                                         !updateName ||
                                         !updateApellido ||
                                         !updateTelefono ||
-                                        !updateCorreo ||
-                                        !updateDni
-                                    }>Actualizar</Button>
+                                        !updateCorreo
+                                    }>Actualizar</button>
                             </form>
                         </Modal.Body>
                     </Modal>

@@ -34,8 +34,16 @@ const SideBar = () => {
               <i className="bi bi-person"></i> EMPLEADOS
             </Link>
           </li>
+          <li>
+            <Link to="/" className="btn btn-warning">
+              <i className="bi bi-box-arrow-left"></i>LOGOUT
+            </Link>
+          </li>
         </ul>
+
       </div>
+
+
       <div className={Styles["dropdown"]}>
         <Dropdown>
           <Dropdown.Toggle variant="success" id="dropdown-basic">

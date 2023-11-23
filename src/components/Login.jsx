@@ -1,7 +1,9 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import '../styles/LoginEstilo.css';
 
 export default function Form() {
+  const navigate = useNavigate();
   const [nombre, setNombre] = useState('');
   const [contraseña, setContraseña] = useState('');
 
@@ -16,15 +18,17 @@ export default function Form() {
   const handleSubmit = (event) => {
     event.preventDefault();
 
-
     if (nombre.trim() === '' || contraseña.trim() === '') {
       alert('Por favor, completa todos los campos');
       return;
     }
 
-    if (nombre === 'Joaquin' && contraseña === '123456') {
-      alert('Inicio de sesión exitoso');
+    // Validar credenciales
+    const correoSuperUsuario = 'superuser@example.com';
+    const passSuperUsuario = 'sistema1234';
 
+    if (nombre.toLowerCase().trim() === correoSuperUsuario.toLowerCase() && contraseña === passSuperUsuario) {
+      navigate('/auth');
     } else {
       alert('Credenciales incorrectas. Por favor, verifica tu usuario y contraseña.');
     }
