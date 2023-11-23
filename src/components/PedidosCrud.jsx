@@ -214,12 +214,12 @@ function PedidosCrud() {
                             </Modal.Title>
                         </Modal.Header>
                         <Modal.Body>
-                            <form className="bg-success">
+                            <form className="">
                                 <h1>
                                     Actualizar
                                 </h1>
-                                <div className="">
-                                    <label>Cliente</label>
+                                <div className="m-1">
+                                    <label className="mx-2">Cliente</label>
                                     <input
                                         type="text"
                                         placeholder="n° cliente"
@@ -229,20 +229,20 @@ function PedidosCrud() {
                                             setupdatedataCliente(onlyLettersAndSpaces);
                                         }} />
                                 </div>
-                                <div className="">
-                                    <label>Total</label>
+                                <div className="m-1">
+                                    <label className="mx-2">Total</label>
                                     <input type="tel" placeholder="Your phonenumber" value={updatetotalItem} onChange={(e) => {
                                         const input = e.target.value;
                                         const onlyNumbers = input.replace(/[^0-9]/g, "");
                                         setupdatetotalItem(onlyNumbers);
                                     }} />
                                 </div>
-                                <button onClick={() => { setShowUpdateModal(false) }}>Cancelar</button>
-                                <Button className="bg-danger" onClick={handleUpdate}
+                                <button button className={Styles['button-de-proveedores']} onClick={() => { setShowUpdateModal(false) }}>Cancelar</button>
+                                <button button className={Styles['button-de-proveedores']} onClick={handleUpdate}
                                     disabled={
                                         !updatedataCliente ||
                                         !updatetotalItem
-                                    }>Actualizar</Button>
+                                    }>Actualizar</button>
                             </form>
                         </Modal.Body>
                     </Modal>

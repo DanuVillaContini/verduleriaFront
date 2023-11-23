@@ -172,7 +172,7 @@
 
 
 .col-de-acreedores form {
-    width: 70vw;
+    width: 40vw;
     padding: 5%;
     display: flex;
     color: white;
@@ -200,7 +200,7 @@
 }
 
 .col-de-acreedores form input {
-    width: 50vw;
+    width: 35vw;
 
 }
 
@@ -376,7 +376,7 @@
 }
 
 .col-de-proveedores form {
-    width: auto;
+    width: 30vw;
     padding: 5%;
     display: flex;
     color: white;

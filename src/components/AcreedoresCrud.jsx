@@ -201,20 +201,20 @@ function AcreedoresCrud() {
                         </Modal.Title>
                     </Modal.Header>
                     <Modal.Body>
-                        <form className="bg-success">
+                        <form className="">
                             <h1>
                                 Actualizar
                             </h1>
-                            <div className="">
-                                <label>N° Cliente</label>
+                            <div className="m-1">
+                                <label className="mx-2">N° Cliente</label>
                                 <input type="text" placeholder="Busque el numero que le corresponde al cliente" className={Styles['input-form']} value={updatedataCliente} onChange={(e) => {
                                     const input = e.target.value;
                                     const onlyNumbers = input.replace(/[^0-9]/g, "");
                                     setupdatedataCliente(onlyNumbers)
                                 }} />
                             </div>
-                            <div className={Styles['container-div-del-form']}>
-                                <label>N° Venta</label>
+                            <div className={`m-5 ${Styles['container-div-del-form']}`}>
+                                <label className="mx-2">N° Venta</label>
                                 <input type="text" placeholder="Busque el numero que le corresponde a la venta" className={Styles['input-form']} value={updatedataVenta} onChange={(e) => {
                                     const input = e.target.value;
                                     const onlyNumbers = input.replace(/[^0-9]/g, "");
@@ -222,15 +222,15 @@ function AcreedoresCrud() {
                                 }} />
                             </div>
                             <div className={Styles['container-div-del-form']}>
-                                <label>Precio Deudor</label>
+                                <label className="mx-2">Precio Deudor</label>
                                 <input type="text" placeholder="Indique total fiado" className={Styles['input-form']} value={updatetotalDeudorItem} onChange={(e) => {
                                     const input = e.target.value;
                                     const onlyNumbersAndDot = input.replace(/[^\d.]/g, "");
                                     setupdatetotalDeudorItem(onlyNumbersAndDot);
                                 }} />
                             </div>
-                            <button onClick={() => { setShowUpdateModal(false) }}>Cancelar</button>
-                            <Button className="bg-danger" onClick={handleUpdate}
+                            <button button className={Styles['button-de-proveedores']} onClick={() => { setShowUpdateModal(false) }}>Cancelar</button>
+                            <Button button className={Styles['button-de-proveedores']} onClick={handleUpdate}
                                 disabled={
                                     !updatedataCliente ||
                                     !updatedataVenta ||
